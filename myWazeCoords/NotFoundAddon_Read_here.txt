@@ -1,0 +1,33 @@
+to  add  Not  Found  fuctionality  add  to  origianal  file  ftom //START NOT_FOUND  ADDON
+
+
+
+//ResultFinal!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  CORE IS HERE
+//
+var textareaX=$("#coordsInput").val(); //alert(textarea);
+     textareaX = textareaX.trim();
+      window.arrayX2=textareaX.split('\n').join(',').split(',');  
+
+
+
+
+
+
+
+//START NOT_FOUND  ADDON--------------------------
+var patt =/[a-zA-Z]/;
+for(j=0;j<arrayX2.length; j++) { 
+
+
+
+      var n=patt.test(arrayX2[j]);
+              if (n===true){
+
+
+                            //alert('not  found-[A-Z]');
+                            arrayX2.splice(j+1,0, "tech"); ++j; //skipp one  counter /*setTimeout(NotFoundGo, 1000);*/  // break;
+                                                           
+
+}
+//END  NOT_FOUND  ADDON----------------------------
+
