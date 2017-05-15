@@ -48,7 +48,7 @@ var textareaX=$("#coordsInput").val(); //alert(textarea);
 for(j=0;j<arrayX2.length; j++)
  { 
   var found = arrayX2[j].match(pattCoordsRegExp );
-  if (found==null){dispalyError();}
+ if (found==null){dispalyError();return false;}
  }
 
 arrayX2=arrayX2.join(',').split(',')
