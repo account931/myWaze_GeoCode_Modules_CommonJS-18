@@ -1,3 +1,7 @@
+
+//Added  RegExp  which  checks  if  it  100%  coordinates  with ","
+
+
 $(document).ready(function(){
 
 
@@ -36,7 +40,7 @@ var textareaX=$("#coordsInput").val(); //alert(textarea);
 
 
 
-
+//Added  RegExp  which  checks  if  it  100%  coordinates  with ","
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
 //New  RegExp  Check  dispalyError()------------------------------
 //NEw-  to make  sure  only  coordin  with ", "are  passed      
