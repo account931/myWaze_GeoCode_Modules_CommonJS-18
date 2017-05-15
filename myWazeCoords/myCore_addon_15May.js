@@ -1,7 +1,5 @@
 
 //Added  RegExp  which  checks  if  it  100%  coordinates  with ","
-
-
 $(document).ready(function(){
 
 
@@ -34,13 +32,13 @@ $("#result").html(h).fadeIn(3000); */
 //
 var textareaX=$("#coordsInput").val(); //alert(textarea);
      textareaX = textareaX.trim();
-      var arrayX2=textareaX.split('\n')   /*.join(',').split(',')*/;  
+      var arrayX2=textareaX.split('\n')   /*.join(',').split(',')*/;      //  NOTE!!!! ->  this  was  changed  and  proceeded  later 
 
 
 
 
 
-//Added  RegExp  which  checks  if  it  100%  coordinates  with ","
+//the  line  above  is  changed  as  well-  we  don't  preceed at  once with {.join(',').split(',')}  we  do later  and below
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
 //New  RegExp  Check  dispalyError()------------------------------
 //NEw-  to make  sure  only  coordin  with ", "are  passed      
@@ -48,7 +46,7 @@ var textareaX=$("#coordsInput").val(); //alert(textarea);
 for(j=0;j<arrayX2.length; j++)
  { 
   var found = arrayX2[j].match(pattCoordsRegExp );
- if (found==null){dispalyError();return false;}
+  if (found==null){dispalyError();return false;}
  }
 
 arrayX2=arrayX2.join(',').split(',')
