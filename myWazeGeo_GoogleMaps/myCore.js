@@ -103,13 +103,6 @@ var hFinal='</br><p style="color:red;">RESULTS => found '+d+  '</br> </br><input
 //NEW-------------------------------------------------------------------------------------------------
 
 
-
-//variables  used lat, lon (if they  are  not  found)
-window.latX;
-window.lonX;
-
-
-
 //CORE INSIDE
 // **************************************************************************************
 // **************************************************************************************
@@ -122,6 +115,22 @@ dataX='';
 var data = $.parseJSON($.ajax({
         url:  'https://maps.googleapis.com/maps/api/geocode/json?address='+arrayX2[j]+'&key=AIzaSyANSd5IMYTCcMx6Hap44FXd6_zDo1dklh8',
         dataType: "json", 
+//------------ Adding  LOAD image
+          beforeSend: function()
+    {
+        $('#loadAjax').show(); 
+        $('#loadAjax').html('<img  src="images/loading2.gif" style="width:6%;">');
+        $('#loadAjax').fadeOut(5000);
+    }, 
+   /*success: function(data)
+    {
+        $('#loadAjax').html('done');
+    },*/
+    error: function()
+    {
+        $('#loadAjax').html('error');
+    },
+//----------------------------- END  LOAD  IMAGE
         async: false
     }).responseText); 
 	
@@ -129,15 +138,7 @@ var data = $.parseJSON($.ajax({
 //alert(data.results[0].geometry.location.lat);// working lat
 //alert(data.results[0].formatted_address);//working
 //alert(data.results[0].address_components[0].long_name);  //working
-
-
-//  Completing  the   rows
-
-try { latX=data.results[0].geometry.location.lat }  catch(e) { latX='not  found';}  //if  particular  lat  is  not  found
-try { lonX=data.results[0].geometry.location.lng }  catch(e) { lonX='not  found';}  //if  particular  lon  is  not  found
-dataX=dataX+'<tr><td>'+     latX+   '</td><td>' +lonX+   '</td></tr>';  //alert("screw -> "+dataX);
-//dataX=dataX+'<tr><td>'+     data.results[0].geometry.location.lat+   '</td><td>' +data.results[0].geometry.location.lng+   '</td></tr>';  //alert("screw -> "+dataX);//  first variannt  that   cause  crashing  if  not  found
-// END  Completing  the   rows
+dataX=dataX+'<tr><td>'+     data.results[0].geometry.location.lat+   '</td><td>' +data.results[0].geometry.location.lng+   '</td></tr>';  //alert("screw -> "+dataX);
 
 } // END FOR
 // **                                                                                  **
@@ -209,6 +210,8 @@ hFinal=hFinal+dataX+'</table></br></br></br></br></br>' ;   //alert ("newHTML= "
 
 $("#resultFinal").css("border","1px solid red"); //  set  red  border  for  result  div
 HideInstructions ();
+
+
 ///  end  CORE
 
 //Mine  new
