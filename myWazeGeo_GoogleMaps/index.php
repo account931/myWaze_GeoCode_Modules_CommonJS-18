@@ -40,7 +40,7 @@ background: linear-gradient(to left, #f79d00 , #64f38c); /* W3C, IE 10+/ Edge, F
 <h2 class='shadowX' colorl:red;>Hardcore Geocoding<span style='font-size:12px'> (so far, works in USA only)</span></h2>
  <!--<img src="http://carbonmonoxidedetectorbeeping.com/wp-content/uploads/2015/02/carbon-monoxide-hazard-symbol.jpg"/></br>-->
  <!--<img src="images/illigal.jpg"/>-->
- <span id='api'><img  src="images/api.jpeg"/> </span> &nbsp; &nbsp; <span id='loading' style='display:none;'><img  style ="width:100px;" src="images/loading2.gif"/></span> 
+ <span id='api'><img  src="images/api.jpeg"/> </span> &nbsp; &nbsp; <span id='loading' style='display:none;'><img  style ="width:100px;" src="images/loading2.gif"/></span>  <span id="loadAjax"> </span>
  <span id='addressQuantity' style='color:red'></span>
  
  </br></br>
@@ -74,7 +74,7 @@ View Video Instructions</a>
 
 
 <form action="">
- <textarea id="coordsInput" rows="8" cols="80">
+ <textarea id="coordsInput" rows="8" cols="80" style="width:96%;">
 
 </textarea></br>
   <input type="button" value="Let's do it" id="splitButton">
