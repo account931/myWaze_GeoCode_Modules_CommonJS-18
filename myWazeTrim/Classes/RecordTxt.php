@@ -18,6 +18,7 @@ class RecordTxt {
 // **                                                                                  **
 
 public static function RecordAnyInput($idArray, $filename){
+     date_default_timezone_set("Europe/Kiev");
      $date=date("d.m.y.H:i");  //get date  and  User Agent and browser;
      $uAgent=$_SERVER['HTTP_USER_AGENT'];//$browser = get_browser(); //$browser not  working;
  
