@@ -282,7 +282,8 @@ hFinal=hFinal+"</p></br></br>";
 //  END should  we  or  not add  a  footer to  result
 
 //show details button
-$("#highLight_errors_button").show();
+$("#highLight_errors_button").show();//show button
+$("#highLight_errors").hide(); //hide content
 
 
 }
