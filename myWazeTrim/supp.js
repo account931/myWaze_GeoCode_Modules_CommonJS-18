@@ -232,10 +232,20 @@ var textarea=$("#coordsInput").val();
 
 
 
-//START  Highlight Double Spaces--------------
-var resHighlight = textarea.replace(/  +/g, " ->!!!<- ");
-$("#coordsInput").val(resHighlight);
-//END  Highlight Double Spaces --------------
+//START  Highlight Double Spaces----------------------------------------------
+var arrayX2HIGHLIGHT=textarea.split('\n');/*.join(',').split(','); */
+var resHighlight='';
+for(j=0;j<arrayX2HIGHLIGHT.length; j++)
+ {  
+    resHighlight+= arrayX2HIGHLIGHT[j].replace(/  +/g, "&nbsp;<span style='background:red;'> __ </span>&nbsp;")+"</br>";//replace all double spaces with red
+ }
+$("#highLight_errors").html(resHighlight);
+//$("#coordsInput").val(resHighlight);
+//END  Highlight Double Spaces --------------------------------------------------
+
+
+
+
 
 
 
@@ -271,6 +281,10 @@ hFinal=hFinal+"</p></br></br>";
     }    
 //  END should  we  or  not add  a  footer to  result
 
+//show details button
+$("#highLight_errors_button").show();
+
+
 }
 // **                                                                                  **
 // **************************************************************************************
@@ -279,6 +293,19 @@ hFinal=hFinal+"</p></br></br>";
 // End trimWaze()
 
 
+
+
+
+
+
+
+// SHOW DETAILS
+//---------------------
+$("#highLight_errors_button").click(function(){ 
+ $("#highLight_errors").toggle(1000);
+});
+//-----------------------------------------------------
+//END SHOW DETAILS
 
 
 

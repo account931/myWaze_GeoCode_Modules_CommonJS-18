@@ -82,6 +82,17 @@ View Video Instructions</a>
 </textarea></br>
   <input type="button" value="Let's do it" id="splitButton">
 </form>
+
+
+
+</br></br>
+<p id="highLight_errors_button" style="display:none;cursor:pointer;">show details >></p>
+<div id="highLight_errors" style="display:none;"><!-- Highlights with red double spaces-->
+</div><!--end id="highLight_errors -->
+</br></br>
+
+
+
 </div>
 
 
