@@ -142,6 +142,8 @@ if( $("#instructionButton").attr("value")=="instructions")
 //hide  instr  &  change  button
     HideInstructions ();
 //END  Hid e Instructuins  and  change  button
+ $("#highLight_errors_button").hide(1000);// hide link highlight details
+ $("#highLight_errors").hide(1000); //hide highlight details
  });
 //END CLEAR  Button
 //***********************************************
@@ -226,18 +228,27 @@ var textarea=$("#coordsInput").val();
   //var regExp = new RegExp(\s\s+, "gi");
   var numb = (textarea.match(/  +/g) || []).length;
   //alert(numb);
+  var numbComma = (textarea.match(/ \,+/g) || []).length; //count space+comma
+  var numbDot = (textarea.match(/ \.+/g) || []).length; //count space+dot
+  //alert("comma-> "+numbComma +" dot->"+numbDot);
+  
+  var AllErrorsCount=numb+numbComma+numbDot;
 //end  count occurance double space-----------------
 
 
 
 
 
-//START  Highlight Double Spaces----------------------------------------------
+//START  Highlight Double Spaces(+comma+dots)----------------------------------------------
 var arrayX2HIGHLIGHT=textarea.split('\n');/*.join(',').split(','); */
 var resHighlight='';
 for(j=0;j<arrayX2HIGHLIGHT.length; j++)
  {  
-    resHighlight+= arrayX2HIGHLIGHT[j].replace(/  +/g, "&nbsp;<span style='background:red;'> __ </span>&nbsp;")+"</br>";//replace all double spaces with red
+     resHighlight+= arrayX2HIGHLIGHT[j].replace(/  +/g, "&nbsp;<span style='background:red;'> __ </span>&nbsp;").replace(/ \,+/g, "&nbsp;<span style='background:red;'> __, </span>&nbsp;").replace(/ \.+/g, "&nbsp;<span style='background:red;'> __. </span>&nbsp;")                  +"</br>";//replace all double spaces with red
+	//arrayX2HIGHLIGHT[j].replace(/  +/g, "&nbsp;<span style='background:red;'> __ </span>&nbsp;")+"</br>";//replace all double spaces with red
+	//arrayX2HIGHLIGHT[j].replace(/ \,+/g, "&nbsp;<span style='background:red;'> __, </span>&nbsp;")+"</br>";//replace all spaces + Commas with red
+	
+	//resHighlight+= arrayX2HIGHLIGHT[j];
  }
 $("#highLight_errors").html(resHighlight);
 //$("#coordsInput").val(resHighlight);
@@ -264,14 +275,14 @@ $("#loadAjax").fadeIn(2000).html("Processed").fadeOut(3000);
 
 
 //
-window.hFinal='</br><p style="color:red;">RESULTS => '+numb+'  </br> </br><input type="button" value="Copy" id="copybutton"><span id="flashMessage"></span> </br></br><p id="tableResults"></br>';
-
+window.hFinal='</br><p><p id="ErrorShow" style="color:red;cursor:pointer;" title="click">Errors => '+AllErrorsCount+'</p><p id="ErrorHidden" style="color:red;display:none;">Spaces => '+numb+'; Commas => '+numbComma+ '; Dots => '+numbDot+'</p><input type="button" value="Copy" id="copybutton"><span id="flashMessage"></span> </br></br><p id="tableResults"></br>';
+  
 
  
-
+//Correcting spaces ,commas, dots in result to HTML
  dataX='';
  for(j=0;j<arrayX2.length; j++) {  
- dataX=arrayX2[j].replace( /\s\s+/g, ' ' )+'</br>';
+ dataX=arrayX2[j].replace( /\s\s+/g, ' ' ).replace( / \,+/g, ',' ).replace( / \.+/g, '.' )+'</br>';
  hFinal=hFinal+dataX;
  }
  //  should  we  or  not add  a  footer to  result
@@ -309,6 +320,15 @@ $("#highLight_errors_button").click(function(){
 //END SHOW DETAILS
 
 
+
+
+// SHOW AllErrors
+//---------------------
+ $(document).on("click", '#ErrorShow', function() { //Click for newly generated
+ $("#ErrorHidden").toggle(500);
+});
+//-----------------------------------------------------
+//END SHOW AllErrors
 
 
 

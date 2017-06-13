@@ -60,15 +60,15 @@ background: linear-gradient(to left, #f79d00 , #64f38c); /* W3C, IE 10+/ Edge, F
 </select>-->
 
 <!-- INSTRUCTIONS-->
-<p id="hiddenInstructions" style="display:none; width:81%;background:green;padding-left:10px;"><!--<span id="closeIt" style="cursor:pointer;">close</span>-->
+<p id="hiddenInstructions" style="display:none; width:81%;background:cyan;padding-left:10px;"><!--<span id="closeIt" style="cursor:pointer;">close</span>-->
 <!--RU-->
 </br></br>
 <a href='#' target="_blank" style="font-size:18px; "/>
 View Video Instructions</a>
-</br></br>
+</br>
 
 <!-- END RU-->
-</br></br><!--1.Copy several rows of non-separated  coordinates  from  your  spreadsheet</br> 2.Paste them to  the  form below</br> 3.Click "Separate"  button</br>4.Copy separated  coordinates (by clicking "copy" button ) & paste them back  to  your  spreadsheet all at once.Don't forget to  place focus on the  first cell before pasting </br>P.S You can  run a demo  with  "Example" button</br></br></br>--></br></p>
+</br>This application performs a check, finds, highlights and fixes all double blankspaces, blankspace + comma, blankspace + full stop. </br></br></p>
 <!--END  INSTRUCTIONS-->
 
 <p id="result"></p><!--not used-->
@@ -80,7 +80,7 @@ View Video Instructions</a>
  <textarea id="coordsInput" rows="8" cols="80" style="width:96%;">
 
 </textarea></br>
-  <input type="button" value="Let's do it" id="splitButton">
+  <input type="button" value="Check" id="splitButton">
 </form>
 
 
