@@ -68,7 +68,9 @@ View Video Instructions</a>
 </br>
 
 <!-- END RU-->
-</br>This application performs a check, finds, highlights and fixes all double blankspaces, blankspace + comma, blankspace + full stop. </br></br></p>
+</br>This application performs a check, finds, highlights and fixes all double blankspaces, blankspace + comma, blankspace + full stop. 
+</br></br>Additionally, fixes consecutive duplicates, double commas, double dots, cases when word is preceeded by comma without no space and more.
+</br></br></p>
 <!--END  INSTRUCTIONS-->
 
 <p id="result"></p><!--not used-->

@@ -47,7 +47,7 @@ $("#resultFinal").css("border","1px solid red"); //  set  red  border  for  resu
           window.flagged="false";
 		//var textareaCR=textareaCR+"";
            hFinal=hFinal;
- //hFinal=hFinal+"<p>Please let me know if you have any additional questions. Feel free to contact us</br>Waze support Team </p></br>";//used in Waze Trim
+ //hFinal=hFinal+"<p>Best regards,</br>Waze support Team </p></br>";//used in Waze Trim
 		 //$("#tableResults").append("<p>Please let me know if you have any additional questions. Feel free to contact us</br>Waze support Team </p>");
 		 //$('<p>Text</p>').appendTo('#tableResults');
          
@@ -214,6 +214,10 @@ $("#resultFinal").stop().fadeOut("slow",function(){  $(this).html("<h1 style='co
 
 
 
+
+
+
+
 //---------------------------------------------------------------------------
 // **************************************************************************************
 // **************************************************************************************
@@ -223,32 +227,48 @@ function trimWaze(){
 var textarea=$("#coordsInput").val();
 
 
-
-//count occurance double space---------------------
+//Here Listed all Options!!!!!!!!!!!!!!1
+//count diffrence occurance of errors (double space etc)---------------------
   //var regExp = new RegExp(\s\s+, "gi");
   var numb = (textarea.match(/  +/g) || []).length;
   //alert(numb);
   var numbComma = (textarea.match(/ \,+/g) || []).length; //count space+comma
+
   var numbDot = (textarea.match(/ \.+/g) || []).length; //count space+dot
   //alert("comma-> "+numbComma +" dot->"+numbDot);
   
-  var AllErrorsCount=numb+numbComma+numbDot;
+  var doubleWords =(textarea.match(/\b(\w+)\s+\1\b/g) || []).length; // count all consecutive duplicate words
+  
+  var doubleCommas =(textarea.match(/(\,\,+)/g  ) || []).length; // count all consecutive duplicate commas (i.e ",,")
+
+  var doubleDots =(textarea.match(/(\.\.+)/g  ) || []).length; // count all consecutive duplicate dots (i.e "..")
+
+
+   var commaCharNoSpace =(textarea.match(/\,(.)/g) || []).length; // count comma followed by NO SPACE
+
+  // var dotCharNoSpace =(textarea.match(/\,(.)/g) || []).length; // count dot followed by NO SPACE //NOT IMPLEMENTED
+   
+
+    
+   
+ // count all counts all together
+  var AllErrorsCount=numb+numbComma+numbDot+doubleWords+doubleCommas+doubleDots+commaCharNoSpace;
 //end  count occurance double space-----------------
 
 
 
 
 
-//START  Highlight Double Spaces(+comma+dots)----------------------------------------------
+//START  Highlight Double Spaces(+comma+dots_dublicates)----------------------------------------------
 var arrayX2HIGHLIGHT=textarea.split('\n');/*.join(',').split(','); */
 var resHighlight='';
 for(j=0;j<arrayX2HIGHLIGHT.length; j++)
  {  
-     resHighlight+= arrayX2HIGHLIGHT[j].replace(/  +/g, "&nbsp;<span style='background:red;'> __ </span>&nbsp;").replace(/ \,+/g, "&nbsp;<span style='background:red;'> __, </span>&nbsp;").replace(/ \.+/g, "&nbsp;<span style='background:red;'> __. </span>&nbsp;")                  +"</br>";//replace all double spaces with red
+     resHighlight+= arrayX2HIGHLIGHT[j]./*->double sapces*/replace(/  +/g, "&nbsp;<span style='background:red;'> __ </span>&nbsp;").replace(/ \,+/g, "&nbsp;<span style='background:red;'> __, </span>&nbsp;").replace(/ \.+/g, "&nbsp;<span style='background:red;'> __. </span>&nbsp;")./*dublicate*/replace(/\b(\w+)\s+\1\b/g, "&nbsp;<span style='background:red;'> \$1 \$1 </span>&nbsp;")./*double,,*/replace(/\,\,+/g, "&nbsp;<span style='background:red;'> ,, </span>&nbsp;")./*double..*/replace(/\.\.+/g, "&nbsp;<span style='background:red;'> .. </span>&nbsp;")./*comma char no space(,word)*/replace(/\,(.)/g, "&nbsp;<span style='background:red;'> ,</span>&nbsp;")                  +"</br>";//replace all double spaces with red
 	//arrayX2HIGHLIGHT[j].replace(/  +/g, "&nbsp;<span style='background:red;'> __ </span>&nbsp;")+"</br>";//replace all double spaces with red
-	//arrayX2HIGHLIGHT[j].replace(/ \,+/g, "&nbsp;<span style='background:red;'> __, </span>&nbsp;")+"</br>";//replace all spaces + Commas with red
+	//arrayX2HIGHLIGHT[j].replace(/ \,+/g, "&nbsp;<span style='background:red;'> __, </span>&nbsp;")+"</br>";//replace all spaces + Commas with red  /(\.\.+)/g
 	
-	//resHighlight+= arrayX2HIGHLIGHT[j];
+	//resHighlight+= arrayX2HIGHLIGHT[j];   
  }
 $("#highLight_errors").html(resHighlight);
 //$("#coordsInput").val(resHighlight);
@@ -275,18 +295,18 @@ $("#loadAjax").fadeIn(2000).html("Processed").fadeOut(3000);
 
 
 //
-window.hFinal='</br><p><p id="ErrorShow" style="color:red;cursor:pointer;" title="click">Errors => '+AllErrorsCount+'</p><p id="ErrorHidden" style="color:red;display:none;">Spaces => '+numb+'; Commas => '+numbComma+ '; Dots => '+numbDot+'</p><input type="button" value="Copy" id="copybutton"><span id="flashMessage"></span> </br></br><p id="tableResults"></br>';
+window.hFinal='</br><p><p id="ErrorShow" style="color:red;cursor:pointer;" title="click">Errors => '+AllErrorsCount+'</p><p id="ErrorHidden" style="color:red;display:none;">Double Spaces => '+numb+'; </br>Char followed by Commas with space => '+numbComma+ '; Dots => '+numbDot+'; </br>Consecutive duplicates => '+doubleWords+'; </br>Double commas => '+doubleCommas+    '; Double dots => '+doubleDots+  '; </br>Comma+char with NO space => ' +commaCharNoSpace+   '</p><input type="button" value="Copy" id="copybutton"><span id="flashMessage"></span> </br></br><p id="tableResults"></br>';
   
 
  
-//Correcting spaces ,commas, dots in result to HTML
+//Correcting/Fixing spaces ,commas, dots, dublicates in result to HTML
  dataX='';
  for(j=0;j<arrayX2.length; j++) {  
- dataX=arrayX2[j].replace( /\s\s+/g, ' ' ).replace( / \,+/g, ',' ).replace( / \.+/g, '.' )+'</br>';
+ dataX=arrayX2[j].replace( /\s\s+/g, ' ' ).replace( / \,+/g, ',' ).replace( / \.+/g, '.' )./*word duplicate*/replace( /\b(\w+)\s+\1\b/g, '\$1' )./*double commas ,,*/replace( /\,\,+/g, ',' )./*double dots ..*/replace( /\.\.+/g, '.' )./*comma follwed by char no space*/replace(/\,(.)/g, ', \$1' )+'</br>';    
  hFinal=hFinal+dataX;
  }
  //  should  we  or  not add  a  footer to  result
-if (window.flagged=="true"){hFinal=hFinal+"</br><span id='footer'>Please let me know if you have any additional questions, feel free to contact us.</br>Waze support Team </span></p>";}
+if (window.flagged=="true"){hFinal=hFinal+"</br><span id='footer'>Best regards,</br>Waze Support team </span></p>";}
 else{
 hFinal=hFinal+"</p></br></br>";
     }    
