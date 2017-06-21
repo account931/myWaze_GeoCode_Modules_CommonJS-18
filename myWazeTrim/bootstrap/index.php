@@ -1,110 +1,204 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en-US">
 <head>
-<title>Waze Format</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="supp.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <title>Re-trim  </title>
+  
+  
+  
 
-<style>
-.shadowX{text-shadow: grey 5px 5px 3px;}
-td{width:100px;}
-//body{
-
-
-
-
-
-background: #603813; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #603813 , #b29f94); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #603813 , #b29f94); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        
-        }
+ 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-/*body{background:#f5f5f0;background-image: url('http://lamcdn.net/lookatme.ru/post_image-image/jVvLJ_BToiLcuNxPNKhNRw-article.png');   } */     /* background-image: url('images/ch_back.png');    https://www.waze.com/assets/press/map_wazers@2x-e52b336c63ce7d3ee56b4aa7fe853007.png*/
-/*  https://www.google.ca/logos/doodles/2015/googles-new-logo-5078286822539264.2-hp.gif -draw logo  */
-/* http://lamcdn.net/lookatme.ru/post_image-image/jVvLJ_BToiLcuNxPNKhNRw-article.png   -just  logo*/
-table{} 
-#flashMessage{color:red;font-size:23px;}
-.gradient{
-background: #f79d00; /* fallback for old browsers */
-background: -webkit-linear-gradient(to left, #f79d00 , #64f38c); /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to left, #f79d00 , #64f38c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
-</style>
+
+  <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+  <script src="supp.js"></script><!--  Core  JS-->
 
 </head>
 
-
 <body>
-<div style="background-color:#f5f5f0;padding:33px;margin-top:50px;margin-left:30px;width:77%;box-shadow: inset 0 0 1em white, 0 0 8em black;"> <!--*box-shadow: inset 0 0 1em gold, 0 0 1em red*/-->
-<h2 class='shadowX' colorl:red;>Waze Format<span style='font-size:12px'> (--)</span></h2>
-
- <!--<img src="images/illigal.jpg"/>-->
- <span id='api'><img  src="images/s2.ico" style="width:15%;"/> </span> &nbsp; &nbsp; <span id='loading' style='display:none;'><img  style ="width:100px;" src="images/loading2.gif"/></span>  <span id="loadAjax" style ="color:red;font-size:22px;"> </span>
- <span id='addressQuantity' style='color:red'></span>
- 
- </br></br>
- 
 
 
 
-<!-- Upper  buttons-->
- <input type="button" value="example" id="examplebutton"> <input type="button" value="instructions" id="instructionButton"> <input type="button" value=" clear " id="clearButton">
- <input type="button" value=" CR footer " id="cr_footer"> <!--<input type="button" value=" CR header " id="cr_header">-->
- 
-<!-- <select>
-  <option value="us">US</option>
-  <option value="1">Other Country</option>
-  <option value="2">Other Country1</option>
-  
-</select>-->
-
-<!-- INSTRUCTIONS-->
-<p id="hiddenInstructions" style="display:none; width:81%;background:cyan;padding-left:10px;"><!--<span id="closeIt" style="cursor:pointer;">close</span>-->
-<!--RU-->
-</br></br>
-<a href='#' target="_blank" style="font-size:18px; "/>
-View Video Instructions</a>
-</br>
-
-<!-- END RU-->
-</br>This application performs a check, finds, highlights and fixes all double blankspaces, blankspace + comma, blankspace + full stop. </br></br></p>
-<!--END  INSTRUCTIONS-->
-
-<p id="result"></p><!--not used-->
-<p id="resultFinal" style="padding-left:10px;background:#f5f5f0;"></p><!-- final  results  go  there-->
 
 
-
-<form action="">
- <textarea id="coordsInput" rows="8" cols="80" style="width:96%;">
-
-</textarea></br>
-  <input type="button" value="Check" id="splitButton">
-</form>
-
-
-
-</br></br>
-<p id="highLight_errors_button" style="display:none;cursor:pointer;">show details >></p>
-<div id="highLight_errors" style="display:none;"><!-- Highlights with red double spaces-->
-</div><!--end id="highLight_errors -->
-</br></br>
-
-
-
+<div class="jumbotron text-center" style =' background-color: #2ba6cb;'>
+  <h1>Waze Trim application</h1>
+  <p>Finds, highlights and fixes all double blankspaces</p> 
 </div>
 
 
 
 
+
+
+
+<div class="item contact padding-top-0 padding-bottom-0" id="contact1">
+    	
+    		<div class="wrapper grey">
+    	
+    			<div class="container">
+
+
+				
+				
+
+
+                   
+
+
+
+
+
+				
+    		<!--START DIV 1111-->
+    				<div class="col-md-12"> <!--5-->
+
+
+
+
+
+
+	                
+
+
+
+
+
+    			
+    					<!--<h3 class="margin-bottom-40 editContent">Your  <span class='subtext'> text</span></h3>-->
+
+
+
+
+
+<!--------------------------------------------------- TextArea FORm  Start------------------------------------------------->
+    				
+    					<form role="form">  	
+    				  		    				  	
+    				  	   				  		
+    				  		<div class="form-group">
+    				  			<textarea class="form-control" rows="6" placeholder="Your text here.." id='coordsInput' required></textarea>
+								
+    				  		
+    				  			
+    				  		</div>
+    				  
+    				    	
+    				  	   
+    				
+    				
+ <!---------------------------------------------------TextArea FORm  END------------------------------------------------->
+    			
+    					
+    				</div><!-- /.col-md-5 --> <!-- END  <div class="col-md-5">-->
+
+  <!-------------------END DIV 1111-->
+
+
+
+
+
+
+
+
+
+
+<!-------------------------------------------------------START BUTTONS---------------------------------------->
+                                        <!--mine-->
+					</br>
+					<div class="col-md-8"  id="" style="margin-top:33px;">  
+
+
+    				  	   
+										
+    				  		<button id="splitButton" type="button" class="btn btn-primary btn-embossed btn-lg btn-wide">Run a check</button>
+                            <button id="clearButton" type="button"  class="btn btn-primary btn-embossed btn-lg btn-wide">Reset</button >
+							<button id="examplebutton" type="button" class="btn btn-primary btn-embossed btn-lg btn-wide">Example</button>
+                            <button id="instructionButton" type="button" class="btn btn-primary btn-embossed btn-lg btn-wide">Instruction</button>
+                           <button id="cr_footer" type="button" class="btn btn-primary btn-embossed btn-lg btn-wide">CR Footer</button>
+    				</div>
+<!-------------------------------------------------------START BUTTONS---------------------------------------->
+
+
+
+
+
+
+
+<!------------------------------------------INSTR  WORKING------------------------------->
+</br><div class="col-md-8 jumbotron"  id="hiddenInstructions" style="display:none;margin-top:2%;"> 
+
+<!-- INSTRUCTIONS-->
+<p>
+<!--RU-->
+</br></br>
+<a href='#' target="_blank" style="font-size:18px; "/>View Video Instructions</a>
+</br>
+
+<!-- END RU-->
+</br>This application performs a check, finds, highlights and fixes all double blankspaces, blankspace + comma, blankspace + full stop.
+</br></br>Additionally, fixes consecutive duplicates, double commas, double dots, cases when word is preceeded by comma without no space and more.
+ </br></br><i>Note: numbered and bulleted list option will not be saved</i></br></p>
+<!--END  INSTRUCTIONS-->
+
+ </div>
+<!-----------------------------------------END INSTR---------------------->
+
+
+
+					
+					
+					<!--------------------------------mine RESULTS------------------------------------->
+					</br></br>
+					<div class="col-md-8"  id="resultFinal" style="margin-top:33px;">   </div> </br></br></br>
+					<!--------------------------------- end  mine-------------------------------------->
+					
+    		                          
+
+<!--------------  some---------->
+</br></br>
+<div class="col-md-8">
+<p id="highLight_errors_button" style="display:none;cursor:pointer;padding:10px;margin-top:17px;text-decoration:underline;color:red;">show details >></p>
+<div id="highLight_errors" style="display:none;padding:19px;border:1px dotted red;box-shadow: 5px 5px 25px red ;"><!-- Highlights with red double spaces-->
+</div><!--end id="highLight_errors -->
+</br></br>
+</div><!--div class="col-md-8">-->
+<!----------------end some------>
+
+
+                                        
+
+    			</div><!-- /.container -->
+				
+				
+				
+					
+					
+					
+    		
+    		</div><!-- /.wrapper -->
+
+                <div style="height:77px;"></div>
+
+
+    	
+    	</div><!-- /.item -->
+    
+    </body>
+</html>
+
+
+
+
+<!--
 <?php
 // Record (with CLASS) all the  input  to  txt;  //;
       include("Classes/RecordTxt.php");
-      RecordTxt::RecordAnyInput(array(), 'recordText/myWazeCoords.txt');// Record  to  text;
+      RecordTxt::RecordAnyInput(array(/*$user*/), 'recordText/myWazeUnofficial.txt');// Record  to  text;
 //End  Record;
-
-?>
-
-</body>
-</html>
+?>-->
