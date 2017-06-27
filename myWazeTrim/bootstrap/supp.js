@@ -149,6 +149,10 @@ if( $("#instructionButton").attr("value")=="instructions")
 //END  Hid e Instructuins  and  change  button
  $("#highLight_errors_button").hide(1000);// hide link highlight details
  $("#highLight_errors").hide(1000); //hide highlight details
+
+//hide CAUTION in left top corner if ISSET(Help center)
+if($('#popAlert').length > 0){$('#popAlert').remove();}
+
  });
 //END CLEAR  Button
 //***********************************************
@@ -249,19 +253,22 @@ var textarea=$("#coordsInput").val();
   var doubleDots =(textarea.match(/(\.\.+)/g  ) || []).length; // count all consecutive duplicate dots (i.e "..")
 
 
-  var commaCharNoSpace =(textarea.match(/\,(.)/g) || []).length; // count comma followed by NO SPACE
+  
 
-
-  var hrefUrlBlankSpace =(textarea.match(/Help Center/gi) || []).length; // checking Hepl Center space; if blankspace is linked. Can't design it normally!!! 
+  //start Help Center issue---
+  var hrefUrlBlankSpace =(textarea.match(/Help Center/gi) || []).length; // checking Help Center space; if blankspace is linked. Can't design it normally!!! 
          //$("body").append("<div id='popAlert' style='position:absolute;width:10%;height:20px;top:0px;left:0px;background:red;'><center>Caution -></center></div>");
          if(hrefUrlBlankSpace>0){/*alert("Caution -> URL detected!!!");*/
                                 $("body").append("<div id='popAlert' style='position:absolute;width:8%;height:20px;top:0px;left:0px;background:red;'><center>Caution -></center></div>");
                               //$("#popAlert").hide(500); //$('#popAlert').remove();
                              }else{$('#popAlert').remove();}
+  // END Help Center issue-----[
 
+ 
 
+  var commaCharNoSpace =(textarea.match(/\,([^ ])/g) || []).length; // count comma followed by NO SPACE (i.e ",char")  //work here!!!!!!!
 
-  // var dotCharNoSpace =(textarea.match(/\,(.)/g) || []).length; // count dot followed by NO SPACE //NOT IMPLEMENTED
+  // var dotCharNoSpace =(textarea.match(/\.(.)/g) || []).length; // count dot followed by NO SPACE (.char)//NOT IMPLEMENTED
    
 
     
@@ -269,7 +276,7 @@ var textarea=$("#coordsInput").val();
  // count all counts all together (they are +-ed)
   var AllErrorsCount=numb+numbComma+numbDot+doubleWords+doubleCommas+doubleDots;  //+commaCharNoSpace
 //end  count occurance double space-----------------
-
+//Here Listed all RG EXPRESSION Options!!!!!!!!!!!!!!1
 
 
 
