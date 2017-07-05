@@ -5,8 +5,8 @@
   <meta http-equiv="Content-Type" content="text/html">
   <title>Re-trim  </title>
   
-  
-  
+   <!--Favicon-->
+   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -28,7 +28,7 @@
 
 <div class="jumbotron text-center" style =' background-color: #2ba6cb;'>
   <h1>Waze Trim application</h1>
-  <p>Finds, highlights and fixes all double blankspaces</p> 
+  <p>Finds, highlights and fixes all double blankspaces, consecutive duplicates and more</p> 
 </div>
 
 
@@ -143,7 +143,19 @@
 <!-- END RU-->
 </br>This application performs a check, finds, highlights and fixes all double blankspaces, blankspace + comma, blankspace + full stop.
 </br></br>Additionally, fixes consecutive duplicates, double commas, double dots, cases when word is preceeded by comma without no space and more.
- </br></br><i>Note: numbered and bulleted list option will not be saved</i></br></p>
+</br>List:
+</br>1.Double blankspaces.
+</br>2.Character followed by comma wih space (i.e "word ,")
+</br>3.Character followed by dot wih space (i.e  "word .")
+</br>4.Consecutive duplicates (i.e "to to")
+</br>5.Accidentally placed two repetitive commas (i.e  ",,")
+</br>6.Accidentally placed two repetitive dots (i.e  "..")
+</br>7.Character preceeded by comma without space (i.e ",word") - > <span style="color:red;"> being implemented </span>
+</br>8.Character preceeded by dot without space (i.e ".word") - > <span style="color:red;"> being implemented</span>
+</br>9.Missing dot in the end of the sentence - > <span style="color:red;"> being implemented</span>
+</br>10.Pls know - > <span style="color:red;"> being implemented</span>
+
+ </br></br><i>Note: numbered and bulleted list option and other inner GCases formats will not be saved.</i></br></p>
 <!--END  INSTRUCTIONS-->
 
  </div>

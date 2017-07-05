@@ -227,6 +227,11 @@ $("#resultFinal").stop().fadeOut("slow",function(){  $(this).html("<h1 style='co
 
 
 
+
+
+
+
+
 //---------------------------------------------------------------------------
 // **************************************************************************************
 // **************************************************************************************
@@ -269,14 +274,23 @@ var textarea=$("#coordsInput").val();
   var commaCharNoSpace =(textarea.match(/\,([^ ])/g) || []).length; // count comma followed by NO SPACE (i.e ",char")  //work here!!!!!!!
 
   // var dotCharNoSpace =(textarea.match(/\.(.)/g) || []).length; // count dot followed by NO SPACE (.char)//NOT IMPLEMENTED
+  
    
+  //Please know that(if that is missing)!!!!!!!!!!!!!!!!!!!!!!
+		var RegExp_PlsKnow = /please (know||note) (?!that)\w*/gi;  //if set "\s*" after "(know||note)'->ERR //Reg Expression itself  http://www.regextester.com/15 //please (know||note) [^t][^h][^a][^t]*\w* /gi;
+              //var RegExp_PlsKnow = /please know\s+[^t][^h][^a][^t]*\w* /gi; 
+	   var PlsKnowErrCount =(textarea.match(RegExp_PlsKnow ) || []).length; //count "please know"
+	    if(textarea.match(RegExp_PlsKnow)) {alert('Missing "that" Error => '+ PlsKnowErrCount);} //if at least 1 result
 
-    
+
    
- // count all counts all together (they are +-ed)
-  var AllErrorsCount=numb+numbComma+numbDot+doubleWords+doubleCommas+doubleDots;  //+commaCharNoSpace
+ // count all counts Errors all together (they are +-ed)
+  var AllErrorsCount=numb+numbComma+numbDot+doubleWords+doubleCommas+doubleDots/*+PlsKnowErrCount*/ ;  //+commaCharNoSpace
+
 //end  count occurance double space-----------------
-//Here Listed all RG EXPRESSION Options!!!!!!!!!!!!!!1
+//Here Listed all RG EXPRESSION Options!!!!!!!!!!!!!!1-----------------------------------------------
+
+
 
 
 
