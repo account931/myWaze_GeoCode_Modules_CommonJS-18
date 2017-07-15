@@ -39,7 +39,7 @@ if(   $('#Wvalue').val().search("https://www.waze.com/editor")!=-1    ){   // ch
 
 
 //if Link from Live Map-------------
-if(   $('#Wvalue').val().search("https://www.waze.com/ru/livemap?")!=-1    ){   // check  if  not  empty  &  contain  right URl
+else if(   $('#Wvalue').val().search(/https:\/\/www.waze.com\/[\w]*\/*livemap?/i)!=-1    ){   // check  if  not  empty  &  contain  right URl
 
         var LiveMapValue=$('#Wvalue').val(); //  your  input
         //alert(Wvalue);
