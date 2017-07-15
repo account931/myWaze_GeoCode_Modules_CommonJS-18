@@ -13,7 +13,7 @@ $(document).ready(function(){
 //var Wvalue=$('#Wvalue').val();
 
 
-
+//if Link from Waze Editor-------------
 if(   $('#Wvalue').val().search("https://www.waze.com/editor")!=-1    ){   // check  if  not  empty  &  contain  right URl
 
         var Wvalue=$('#Wvalue').val(); //  your  input
@@ -29,11 +29,44 @@ if(   $('#Wvalue').val().search("https://www.waze.com/editor")!=-1    ){   // ch
                                  } 
       //alert($_GET["lon"]+" : "+$_GET["lat"]);
       var a=$_GET["lon"];// confirm  erase???????
-     if (confirm("Navigate to Google Maps?")==true) { window.open("https://www.google.com.ua/maps/@"+$_GET["lat"]+"," +$_GET["lon"] +",19z?hl=eng"); }
+     if (confirm("Navigate to Google Maps?")==true) { window.open("https://www.google.com.ua/maps/@"+$_GET["lat"]+"," +$_GET["lon"] +",18z?hl=eng"); }
 
 } //End if( $('#Wvalue').val()!='' )
+//END if Link from Waze Editor--------------
 
-else {alert('Wrong  Input');}
+
+
+
+
+//if Link from Live Map-------------
+if(   $('#Wvalue').val().search("https://www.waze.com/ru/livemap?")!=-1    ){   // check  if  not  empty  &  contain  right URl
+
+        var LiveMapValue=$('#Wvalue').val(); //  your  input
+        //alert(Wvalue);
+
+ 	   
+           var LvMpArray=LiveMapValue.split("?");  //split URL into 2-el array
+           var finalArray = LvMpArray.slice(1, 2);//delete  1 item in array (all  that  comes  up to "?"  = > ?zoom=17&lat=50.25464&lon=28.65925 );
+                //alert ("final=>  "+finalArray); //  secon  array item
+           var c=finalArray.toString(); //Convert an array to a string(just like join() method)
+		   var latLong=c.split('&'); //alert(latLong);  //alert(latLong[0] + ' - '+latLong[1]); //now contains 3 el array[zoom=17, lat=50.25464, lon=28.65925]
+		   var latLong=latLong.slice(1, 3);// we delete 1st array element(zoom), and save two next elem 
+		   //alert(latLong);//alert(latLong[0] + ' - '+latLong[1]);
+		   //var c=latLong.toString();  var latLong=c.split('='); alert(latLong[1]);alert(latLong[3]);
+		   var Lat=latLong[0].split('='); //alert(Lat[1]); //we take 1st latLong array el(lat=50.25464),split into new array Lat[lat,50.25464] & take its 1st element
+		   var Lon=latLong[1].split('='); //alert(Lon[1]); //same as above
+		   
+		   
+     /*if (confirm("Navigate to Google Maps?")==true) {*/ window.open("https://www.google.com.ua/maps/@"+Lat[1]+"," +Lon[1] +",18z?hl=eng"); //} //18z->zoom
+ 
+} //End if( $('#Wvalue').val()!='' )
+//END if Link from Live Map--------------
+
+
+
+
+
+else {alert('Incorrect  Waze URL');}
 
 
 
@@ -84,7 +117,7 @@ if(   $('#Gvalue').val().search("https://www.google")!=-1    ){   // check  if  
 
 } //End if( $('#Gvalue').val()!='' )
 
-else {alert('Wrong  Input G');}      
+else {alert('Incorrect  Google Maps URL');}      
 
         
     }); //END  click
