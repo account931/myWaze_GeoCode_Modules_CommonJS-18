@@ -131,7 +131,7 @@ var data = $.parseJSON($.ajax({
         $('#loadAjax').html('error');
     },
 //----------------------------- END  LOAD  IMAGE
-        async: false
+        async: false  //as long it was true it causes trouble as data could not be fetched at once
     }).responseText); 
 	
 //End  new  Async*******************************
