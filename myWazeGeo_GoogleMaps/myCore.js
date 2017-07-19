@@ -131,7 +131,7 @@ var data = $.parseJSON($.ajax({
         $('#loadAjax').html('error');
     },
 //----------------------------- END  LOAD  IMAGE
-        async: false  //as long it was true it causes trouble as data could not be fetched at once
+        async: false  //as long it was true it causes trouble as data could not be fetched at once(it first execute all the script, while ajax data was not received yet->so it worked only after the second reload)
     }).responseText); 
 	
 //End  new  Async*******************************
