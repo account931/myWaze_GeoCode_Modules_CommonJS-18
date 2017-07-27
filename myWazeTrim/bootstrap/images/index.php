@@ -1,5 +1,4 @@
 <!doctype html>
-<!--------------------------------Bootstrap  Main variant ------------------------------------------>
 <html lang="en-US">
 <head>
   <meta charset="utf-8">
@@ -28,7 +27,7 @@
 
 
 <div class="jumbotron text-center" style =' background-color: #2ba6cb;'>
-  <h1> Waze Trim application</h1>
+  <h1>Waze Trim application</h1>
   <p>Finds, highlights and fixes all double blankspaces, consecutive duplicates and more</p> 
 </div>
 
@@ -146,16 +145,15 @@
 </br></br>Additionally, fixes consecutive duplicates, double commas, double dots, cases when word is preceeded by comma without no space and more.
 </br>List:
 </br>1.Double blankspaces.
-</br>2.Character followed by comma with space (i.e "word ,")
-</br>3.Character followed by dot with space (i.e  "word .")
+</br>2.Character followed by comma wih space (i.e "word ,")
+</br>3.Character followed by dot wih space (i.e  "word .")
 </br>4.Consecutive duplicates (i.e "to to")
 </br>5.Accidentally placed two repetitive commas (i.e  ",,")
 </br>6.Accidentally placed two repetitive dots (i.e  "..")
-</br>7.Character preceeded by comma without space (i.e ",word") - > <span style="color:red;"> 90% implemented </span>
+</br>7.Character preceeded by comma without space (i.e ",word") - > <span style="color:red;"> being implemented </span>
 </br>8.Character preceeded by dot without space (i.e ".word") - > <span style="color:red;"> being implemented</span>
 </br>9.Missing dot in the end of the sentence - > <span style="color:red;"> being implemented</span>
-</br>10.Pls know /Help center - > <span style="color:red;"> notifications only</span>
-</br>11.Double paragraphs - > <span style="color:red;"> being implemented</span>
+</br>10.Pls know - > <span style="color:red;"> being implemented</span>
 
  </br></br><i>Note: numbered and bulleted list option and other inner GCases formats will not be saved.</i></br></p>
 <!--END  INSTRUCTIONS-->
@@ -177,7 +175,7 @@
 <!--------------  some---------->
 </br></br>
 <div class="col-md-8">
-<p id="highLight_errors_button" style="display:none;cursor:pointer;padding:10px;margin-top:17px;text-decoration:underline;color:red;">show more details >></p>
+<p id="highLight_errors_button" style="display:none;cursor:pointer;padding:10px;margin-top:17px;text-decoration:underline;color:red;">show details >></p>
 <div id="highLight_errors" style="display:none;padding:19px;border:1px dotted red;box-shadow: 5px 5px 25px red ;"><!-- Highlights with red double spaces-->
 </div><!--end id="highLight_errors -->
 </br></br>

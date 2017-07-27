@@ -239,3 +239,15 @@ Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.
 -----------------------
 14.06.17.09:19 - 195.69.222.80
 Mozilla/5.0 (X11; CrOS x86_64 9334.72.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.140 Safari/537.36
+ 
+-----------------------
+05.07.17.18:45 - 37.115.89.147
+Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36
+ 
+-----------------------
+05.07.17.18:45 - 37.115.89.147
+Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36
+ 
+-----------------------
+05.07.17.18:45 - 37.115.89.147
+Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36
