@@ -27,8 +27,8 @@
 
 
 
-<div class="jumbotron text-center" style =' background-color: #2ba6cb;'>
-  <h1> Waze Trim application</h1>
+<div id="headX" class="jumbotron text-center" style =' background-color: #2ba6cb;'>
+  <h1 id="h1Text"> <span id="textChange"> Waze Check application</span>   </h1>
   <p>Finds, highlights and fixes all double blankspaces, consecutive duplicates and more</p> 
 </div>
 
@@ -156,6 +156,7 @@
 </br>9.Missing dot in the end of the sentence - > <span style="color:red;"> being implemented</span>
 </br>10.Pls know /Help center - > <span style="color:red;"> notifications only</span>
 </br>11.Double paragraphs - > <span style="color:red;"> being implemented</span>
+</br>12.Misplaced ad pins underscore removal - > <span style="color:red;"> test</span>
 
  </br></br><i>Note: numbered and bulleted list option and other inner GCases formats will not be saved.</i></br></p>
 <!--END  INSTRUCTIONS-->

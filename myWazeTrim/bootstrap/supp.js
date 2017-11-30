@@ -270,9 +270,15 @@ var textarea=$("#coordsInput").val();
   var doubleCommas =(textarea.match(/(\,\,+)/g  ) || []).length; // count all consecutive duplicate commas (i.e ",,")
 
   var doubleDots =(textarea.match(/(\.\.+)/g  ) || []).length; // count all consecutive duplicate dots (i.e "..")
-
-
   
+
+// Rex exp for misplaced ad pins
+  var RegExp_underscore = /_/gi; // construct Regular expression
+  var Underscore_ErrCount =(textarea.match(RegExp_underscore) || []).length; // count undescores (i.e "_")
+  
+
+
+
 
   //start Help Center issue---
   var hrefUrlBlankSpace =(textarea.match(/Help Center/gi) || []).length; // checking Help Center space; if blankspace is linked. Can't design it normally!!! 
@@ -303,13 +309,14 @@ var textarea=$("#coordsInput").val();
   // var dotCharNoSpace =(textarea.match(/\.(.)/g) || []).length; // count dot followed by NO SPACE (.char)//NOT IMPLEMENTED
 
 
+//--------------------------------------------------------------------------------------------------------------------------------
 
 
 
 
    
  // count all counts Errors all together (they are +-ed)
-  var AllErrorsCount=numb+numbComma+numbDot+doubleWords+doubleCommas+doubleDots/*+commaCharNoSpace*/  /*+PlsKnowErrCount*/ ;  //
+  var AllErrorsCount=numb+numbComma+numbDot+doubleWords+doubleCommas+doubleDots/*+commaCharNoSpace*/  /*+PlsKnowErrCount*/ +Underscore_ErrCount;  //
 
 //end  count ----------------
 //Here Listed all RG EXPRESSION Options!!!!!!!!!!!!!!1-----------------------------------------------
@@ -331,12 +338,15 @@ var arrayX2HIGHLIGHT=textarea.split('\n');/*.join(',').split(','); */
 var resHighlight='';
 for(j=0;j<arrayX2HIGHLIGHT.length; j++)
  {  
-     resHighlight+= arrayX2HIGHLIGHT[j]./*->double sapces*/replace(/  +/g, "&nbsp;<span style='background:red;'> __ </span>&nbsp;").replace(/ \,+/g, "&nbsp;<span style='background:red;'> __, </span>&nbsp;").replace(/ \.+/g, "&nbsp;<span style='background:red;'> __. </span>&nbsp;")./*dublicate*/replace(/\b(\w+)\s+\1\b/g, "&nbsp;<span style='background:red;'> \$1 \$1 </span>&nbsp;")./*double,,*/replace(/\,\,+/g, "&nbsp;<span style='background:red;'> ,, </span>&nbsp;")
+     resHighlight+= arrayX2HIGHLIGHT[j]./*->double spaces*/replace(/  +/g, "&nbsp;<span style='background:red;'> __ </span>&nbsp;").replace(/ \,+/g, "&nbsp;<span style='background:red;'> __, </span>&nbsp;").replace(/ \.+/g, "&nbsp;<span style='background:red;'> __. </span>&nbsp;")./*dublicate*/replace(/\b(\w+)\s+\1\b/g, "&nbsp;<span style='background:red;'> \$1 \$1 </span>&nbsp;")./*double,,*/replace(/\,\,+/g, "&nbsp;<span style='background:red;'> ,, </span>&nbsp;")
 ./*double..*/replace(/\.\.+/g, "&nbsp;<span style='background:red;'> .. </span>&nbsp;")
 
-/*comma char no space(,word)*/  /*.replace(/\,(.)/g, " &nbsp;&nbsp;<span style='background:red;'>_ ,</span>&nbsp;")   */          +"</br>";//!!!!problem here -> why not RegExp_commaNoSpaceChar
+/*comma char no space(,word)*/  /*.replace(/\,(.)/g, " &nbsp;&nbsp;<span style='background:red;'>_ ,</span>&nbsp;")   */      
+. /*underscore_*/ replace(RegExp_underscore, "&nbsp;<span style='background:red;'> _ </span>&nbsp;")         +"</br>";//!!!!problem here -> why not RegExp_commaNoSpaceChar
 
 //end replacemnet with red color;-----------
+
+
 
 
 
@@ -378,7 +388,7 @@ if(AllErrorsCount==0){TextAfterCorrection="No correction was performed";}else{Te
 
 
 //All errors detail (available on click)
-window.hFinal='</br><p><p id="ErrorShow" style="color:red;cursor:pointer;" title="click">Errors => '+AllErrorsCount+'</p><p id="ErrorHidden" style="color:red;display:none;">Double Spaces => '+numb+'; </br>Char followed by comma with space => '+numbComma+ '; Dots followed => '+numbDot+'; </br>Consecutive duplicates => '+doubleWords+'; </br>Double commas => '+doubleCommas+    '; Double dots => '+doubleDots+  /*'; </br>Comma+char with NO space => ' +commaCharNoSpace+*/  '</p><input type="button" value="Copy" id="copybutton"><span id="flashMessage"></span> </br><center><h5 style="color:red;">'+TextAfterCorrection+'</h5></center> </br><p id="tableResults"></br>';
+window.hFinal='</br><p><p id="ErrorShow" style="color:red;cursor:pointer;" title="click">Errors => '+AllErrorsCount+'</p><p id="ErrorHidden" style="color:red;display:none;">Double Spaces => '+numb+'; </br>Char followed by comma with space => '+numbComma+ '; Dots followed => '+numbDot+'; </br>Consecutive duplicates => '+doubleWords+'; </br>Double commas => '+doubleCommas+    '; Double dots => '+doubleDots+   ';</br> Underscore => ' + Underscore_ErrCount  + /*'; </br>Comma+char with NO space => ' +commaCharNoSpace+*/  '</p><input type="button" value="Copy" id="copybutton"><span id="flashMessage"></span> </br><center><h5 style="color:red;">'+TextAfterCorrection+'</h5></center> </br><p id="tableResults"></br>';
   
         
                                                                  
@@ -389,7 +399,10 @@ window.hFinal='</br><p><p id="ErrorShow" style="color:red;cursor:pointer;" title
 //Corrected text -> Correcting/Fixing spaces ,commas, dots, dublicates in result to HTML
  dataX='';
  for(j=0;j<arrayX2.length; j++) {  
- dataX=arrayX2[j].replace( /\s\s+/g, ' ' ).replace( / \,+/g, ',' ).replace( / \.+/g, '.' )./*word duplicate*/replace( /\b(\w+)\s+\1\b/g, '\$1' )./*double commas ,,*/replace( /\,\,+/g, ',' )./*double dots ..*/ replace( /\.\.+/g, '.' )/*comma followed by char no space!!!!PROBLEM HERE*/ /*.replace(/\,(.)/g, ', \$1' )*/+'</br>';    
+
+ dataX=arrayX2[j].replace( /\s\s+/g, ' ' ).replace( / \,+/g, ',' ).replace( / \.+/g, '.' )./*word duplicate*/replace( /\b(\w+)\s+\1\b/g, '\$1' )./*double commas ,,*/replace( /\,\,+/g, ',' )./*double dots ..*/ replace( /\.\.+/g, '.' ) /*comma followed by char no space!!!!PROBLEM HERE*/  /*.replace(/\,(.)/g, ', \$1' )*/      ./*underscore _*/ replace( RegExp_underscore , ' ' )      +'</br>'; 
+ 
+  
  hFinal=hFinal+dataX;
  } //end for
 // **                                               **
@@ -443,6 +456,57 @@ $("#highLight_errors_button").click(function(){
 });
 //-----------------------------------------------------
 //END SHOW AllErrors
+
+
+
+
+
+
+
+// **************************************************
+// **************************************************
+// **                                              **
+// START HEADER  CHANGE HOVER HEADER Change -> Waze Check Apllication******
+  $('#headX').hover(function(){    
+         //$('#headerp').html('Social Networking');
+   $("#textChange").clearQueue();//prevent endeless
+   $("#textChange").stop().fadeOut(900,function(){  $(this).html("<span style='color:red;'>gCases</span> Check Apllication") }).fadeIn(900);
+
+             /*$('#textChange').stop().hide(800);  
+             $('#headerpHIDDEN').stop().show(1000);*/
+
+             /*$('#textChange').animate({ "margin-left": 200 }, 2000, 'linear');
+              $('#headerpHIDDEN').stop().show(1000);*/
+},
+function(){ //hover off
+           
+          $("#textChange").clearQueue();
+          $("#textChange").stop().fadeOut(900,function(){  $(this).html("&nbsp;Waze Check Apllication") }).fadeIn(900);
+         
+  //$(this).html('Dynamically  changed MVC');
+              /*$('#headerpHIDDEN').stop().hide(900);
+              $('#textChange').stop().show(1000);*/
+
+              //$('#textChange').html('Waze');
+             /* $('#textChange').animate({ "margin-right": 0 }, 2000, 'linear');
+              $('#headerpHIDDEN').stop().hide(1000);*/
+              
+});
+// END HEADER  CHANGE HOVER HEADER Change----------------------
+// **                                                                                  **
+// **************************************************************************************
+// **************************************************************************************
+//------------------------------------------------------------------
+
+
+
+
+
+
+
+
+              
+
 
 
 
