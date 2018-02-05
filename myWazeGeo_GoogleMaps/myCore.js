@@ -1,3 +1,5 @@
+//finding coordinates by address(G API)
+
 $(document).ready(function(){
 
 //dataX=''; //  gloabal  var
@@ -131,14 +133,31 @@ var data = $.parseJSON($.ajax({
         $('#loadAjax').html('error');
     },
 //----------------------------- END  LOAD  IMAGE
-        async: false  //as long it was true it causes trouble as data could not be fetched at once(it first execute all the script, while ajax data was not received yet->so it worked only after the second reload)
+        async: false
     }).responseText); 
 	
 //End  new  Async*******************************
 //alert(data.results[0].geometry.location.lat);// working lat
 //alert(data.results[0].formatted_address);//working
 //alert(data.results[0].address_components[0].long_name);  //working
-dataX=dataX+'<tr><td>'+     data.results[0].geometry.location.lat+   '</td><td>' +data.results[0].geometry.location.lng+   '</td></tr>';  //alert("screw -> "+dataX);
+
+
+
+
+
+	//My add- consider the case when the address is Not found, 2018-------------------------
+	var status=data.status // json result returns OK||ZERO_RESULTS
+	if(status=="OK"){
+	   dataX2='<tr><td>'+     data.results[0].geometry.location.lat+   '</td><td>' +data.results[0].geometry.location.lng+   '</td></tr>'; 
+	}else {
+	dataX2='<tr><td> Not Found </td><td></td></tr>'; 
+	}
+	// END My add- consider the case when the address is Not found, 2018-------------------------
+	
+	
+
+dataX=dataX+dataX2; // final data
+//dataX=dataX+'<tr><td>'+     data.results[0].geometry.location.lat+   '</td><td>' +data.results[0].geometry.location.lng+   '</td></tr>';  //alert("screw -> "+dataX);
 
 } // END FOR
 // **                                                                                  **
