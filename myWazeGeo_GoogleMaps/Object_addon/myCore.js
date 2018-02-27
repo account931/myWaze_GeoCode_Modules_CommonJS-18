@@ -57,6 +57,7 @@ $(document).ready(function(){
 	
 	//  OBJECT SPLIT COORDINATES---------------------------------------------------------------------------------------
 	var core = {
+		
         firstName: "",
 		
         splitCoordinates : function() {
@@ -81,25 +82,25 @@ $(document).ready(function(){
            for(j=0;j<arrayX2.length; j++) {  //j+=2
 
                var data = $.parseJSON($.ajax({
-               url:  'https://maps.googleapis.com/maps/api/geocode/json?address='+arrayX2[j]+'&key=AIzaSyANSd5IMYTCcMx6Hap44FXd6_zDo1dklh8',
-               dataType: "json", 
-               //------------ Adding  LOAD image
-               beforeSend: function()
-               {
-                   $('#loadAjax').show(); 
-                   $('#loadAjax').html('<img  src="images/loading2.gif" style="width:6%;">');
-                   $('#loadAjax').fadeOut(5000);
-               }, 
-               /*success: function(data)
-               {
-                   $('#loadAjax').html('done');
-                },*/
-                error: function()
-                {
-                    $('#loadAjax').html('error');
-                },
-                //----------------------------- END  LOAD  IMAGE
-                async: false
+                   url:  'https://maps.googleapis.com/maps/api/geocode/json?address='+arrayX2[j]+'&key=AIzaSyANSd5IMYTCcMx6Hap44FXd6_zDo1dklh8',
+                   dataType: "json", 
+                   //------------ Adding  LOAD image
+                   beforeSend: function()
+                   {
+                       $('#loadAjax').show(); 
+                       $('#loadAjax').html('<img  src="images/loading2.gif" style="width:6%;">');
+                       $('#loadAjax').fadeOut(5000);
+                   }, 
+                   /*success: function(data)
+                   {
+                       $('#loadAjax').html('done');
+                    },*/
+                    error: function()
+                    {
+                        $('#loadAjax').html('error');
+                    },
+                    //----------------------------- END  LOAD  IMAGE
+                    async: false
                 }).responseText); 
 	
                 //End  new  Async*******************************
@@ -142,8 +143,7 @@ $(document).ready(function(){
         HideInstructions ();
 
         //  end  CORE
-        },
-		//end core.splitCoordinates();
+        }, //end core.splitCoordinates();
 		
 		
 		secondName: "", //just an empty property
@@ -265,11 +265,11 @@ function HideInstructions (){
     } else {
 
         $("#hiddenInstructions").hide(2000);
-            if ($("#instructionButton").attr("value")=="instructions") {
-                $("#instructionButton").val("Close");$("#instructionButton").css("background","red");
-		    } else { 
-		        $("#instructionButton").val("instructions");$("#instructionButton").css("background", "#ebebe0");
-		    }
+        if ($("#instructionButton").attr("value")=="instructions") {
+            $("#instructionButton").val("Close");$("#instructionButton").css("background","red");
+		} else { 
+		    $("#instructionButton").val("instructions");$("#instructionButton").css("background", "grey");
+		}
     }
 }
 //---------------------------------------------------------------
