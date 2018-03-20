@@ -70,16 +70,16 @@ body, html {
 <?php
 // First  we  get  all params  in Php(user,date),  and  then  we apply  them  to  URL,  which is  loaded  by JS redirect in 2sec
 //Can  be  used  directly with Php, but  we  use  JS for  decoration(display for  2  sec  Load.gif)
-$user=$_GET['user']; //  user from URL
-$year=date("Y");     //Year
-$month=date('m');
-$day=date('d');
-$date=$year."-".$month."-".$day; //  i.e //2016-07-29;  
+$user = $_GET['user']; //  user from URL
+$year = date("Y");     //Year
+$month = date('m');
+$day = date('d');
+$date = $year . "-" . $month . "-" . $day; //  i.e //2016-07-29;  
 
 
 
 //setting  the  time  depending  on  Cookie  existance ---------------------------------------
-if(!isset($_COOKIE["am"])) {  
+if (!isset($_COOKIE["am"])) {  
     $dateStart=$date."+09:00";      // i.e //2016-07-29+09:00  // WAS= $dateStart=$date."+09:00".???->may be it takes origin from Full myWazeTime where u placed 9.00  13.30;
     $dateEnd=$date."+13:00";  // WAS =$dateEnd=$date."+13:30";
     //set  the  cookie
@@ -88,7 +88,7 @@ if(!isset($_COOKIE["am"])) {
      setcookie("am","P.M.", time() + 3600 ); // 86400* = 1 day (86400*30)
      echo "</br>Value is: NULL. It is  your  first  entry  today.Setting  time  to  09.00-13.00 ";
      
-}else{
+} else {
     $dateStart=$date."+14:00";      // i.e //2016-07-29+09:00  // WAS= $dateStart=$date."+09:00".???->may be it takes origin from Full myWazeTime where u placed 9.00  13.30;
     $dateEnd=$date."+18:00";
     echo "</br>It is  your  second  entry today .Setting  time  to  14.00-18.00 .Value is: " . $_COOKIE["am"];
@@ -120,7 +120,7 @@ if(!isset($_COOKIE["am"])) {
 
 
 <div style="width:100%;height:100%;">
- <h1>Calculating  current  date and  completing  your  form for </br><span  style="color:red;font-size:26px;"> <?php echo $user;?> </span></h1>
+  <h1>Calculating  current  date and  completing  your  form for </br><span  style="color:red;font-size:26px;"> <?php echo $user;?> </span></h1>
 
 <!--</br>--><div><img  src="images/loading4.gif" class="rotIMG"/></div><!--</br>-->
 
@@ -129,7 +129,8 @@ if(!isset($_COOKIE["am"])) {
 
 <!--  old  bubbles-->
 <div style="position:relative;top:-40%;">
-<img src="images/load_progress.gif"  alt="v" style="width:20%;" class="bubbles" />  <img src="images/load_progress.gif"  alt="v" style="width:20%;margin-left:20%;" class="bubbles"/> 
+  <img src="images/load_progress.gif"  alt="v" style="width:20%;" class="bubbles" />  
+  <img src="images/load_progress.gif"  alt="v" style="width:20%;margin-left:20%;" class="bubbles"/> 
 </div>
 
 
