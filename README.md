@@ -1,2 +1,0 @@
-# myWaze
-All  myWaze apps

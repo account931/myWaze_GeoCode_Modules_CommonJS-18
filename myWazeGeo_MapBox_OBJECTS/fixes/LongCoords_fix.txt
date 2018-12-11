@@ -1,0 +1,11 @@
+//Subsring  long  coordinates -Not  implemented  elsewhere
+
+var str ="-37.44145699999999";
+    
+    if(str.charAt(0)=="-"){
+        alert('-');
+        var res = str.substring(0, 10);
+    }
+    else{
+        var res = str.substring(0, 9);
+        }
