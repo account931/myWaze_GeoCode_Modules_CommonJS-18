@@ -1,3 +1,5 @@
+<?php header("Access-Control-Allow-Origin: *"); ?>
+<?php include 'Classes/autoload.php';//uses autoload instead of manual includin each class-> Error if it is included in 2 files=only1 is accepted ?>
 <!doctype html>
 <!--------------------------------Bootstrap  Main variant ------------------------------------------>
   <html lang="en-US">
@@ -13,13 +15,13 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  
-	  <script src="js/geo_gmaps_core.js"></script><!-- Main --> 
+	  <script src="js/geo_mapbox_core.js"></script><!-- Main --> 
 	  <script src="js/js_objects/instruction.js"></script>  <!-- Instructions --> 
 	  <script src="js/js_objects/load_example.js"></script> <!-- load_example -->
 	  <script src="js/js_objects/clear_fields.js"></script><!-- clear_fields -->
-	   <script src="js/js_objects/split_coordinates.js"></script><!-- split_coordinates -->
+	  <script src="js/js_objects/split_coordinates.js"></script><!-- split_coordinates -->
 	 
-      <link rel="stylesheet" type="text/css" media="all" href="css/geo_gmaps.css">
+      <link rel="stylesheet" type="text/css" media="all" href="css/geo_mapbox.css">
 
 	  <meta name="viewport" content="width=device-width" />
 	  
@@ -29,9 +31,15 @@
 
 
    <body>
-       <div class="divX"> 
+   
+   
+   <div class="wrapper grey">
+     <div class="container">
+	   <div class="row">
+				 
+       <div class="col-sm-12 col-xs-12 divX"> 
            <h2 class='shadowX'>
-		        Hardcore Geocoding <span class="font-12"> &nbsp; ( **** API )</span>
+		        Hardcore Geocoding <span class="font-12"> &nbsp; ( ****MB API )</span>
 		   </h2>
 		   
            <!--<img src="http://carbonmonoxidedetectorbeeping.com/wp-content/uploads/2015/02/carbon-monoxide-hazard-symbol.jpg"/><br>-->
@@ -79,6 +87,10 @@
             <input type="button" value="Let's do it" id="splitButton">
         </form>
    </div>
+   
+</div> <!-- End  class="row"> -->
+</div> <!-- End  class="container"> -->
+</div> <!-- End  class="wrapper grey"> -->
 
 
 

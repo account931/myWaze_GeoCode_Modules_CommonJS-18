@@ -8,13 +8,10 @@ $(document).ready(function(){
     $("#splitButton").click(function(){        // $(document).on("click", '.circle', function() {   // this  click  is  used  to   react  to  newly generated cicles;
         split_coordinates.getFormValue(); 
       	
-        
 
-
-
-$.when( split_coordinates.getAjaxCoordinates() ).then(function( ) {     //checks if LS exists, if not create it
-        setTimeout(split_coordinates.displayResults	, 2000);               //counts quantity of  tickets in LocalStorage
-    });
+        $.when( split_coordinates.getAjaxCoordinates() ).then(function( ) {     //checks if LS exists, if not create it
+            setTimeout(split_coordinates.displayResults	, 2000);               //counts quantity of  tickets in LocalStorage
+       });
 	
     });
 //END Click SPLIT  Button
@@ -51,6 +48,27 @@ $.when( split_coordinates.getAjaxCoordinates() ).then(function( ) {     //checks
     });
 //END CLEAR  Button
 //***********************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
 
 
 
