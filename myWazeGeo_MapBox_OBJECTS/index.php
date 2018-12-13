@@ -12,14 +12,6 @@
   
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Fa-fa library-->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	  
-	  <script src="js/geo_mapbox_core.js"></script><!-- Main --> 
-	  <script src="js/js_objects/instruction.js"></script>  <!-- Instructions --> 
-	  <script src="js/js_objects/load_example.js"></script> <!-- load_example -->
-	  <script src="js/js_objects/clear_fields.js"></script><!-- clear_fields -->
-	  <script src="js/js_objects/split_coordinates.js"></script><!-- split_coordinates -->
 	 
       <link rel="stylesheet" type="text/css" media="all" href="css/geo_mapbox.css">
 
@@ -37,8 +29,8 @@
      <div class="container">
 	   <div class="row">
 				 
-       <div class="col-sm-12 col-xs-12 divX"> 
-           <h2 class='shadowX'>
+       <div class="col-sm-12 col-xs-12 divX "> 
+           <h2 class='text-primary'> <!-- class='shadowX' -->
 		        Hardcore Geocoding <span class="font-12"> &nbsp; ( ****MB API )</span>
 		   </h2>
 		   
@@ -51,9 +43,9 @@
  
 
           <!-- Upper  buttons-->
-          <input type="button" value="example" id="examplebutton"> 
-		  <input type="button" value="instructions" id="instructionButton"> 
-		  <input type="button" value=" clear " id="clearButton">
+          <input type="button" value="example" id="examplebutton" class="btn btn-success btn-md"> 
+		  <input type="button" value="instructions" id="instructionButton" class="btn btn-primary btn-md"> 
+		  <input type="button" value=" clear " id="clearButton" class="btn btn-danger btn-md">
  
           <select>
             <option value="us">US</option>
@@ -84,7 +76,7 @@
             <textarea id="coordsInput" rows="8" cols="80" style="width:96%;">
             </textarea>
 			<br>
-            <input type="button" value="Let's do it" id="splitButton">
+            <input type="button" class="btn btn-primary btn-md" value="Let's do it" id="splitButton">
         </form>
    </div>
    
@@ -101,6 +93,20 @@
     //RecordTxt::RecordAnyInput(array(), 'recordText/myWazeCoords.txt');// Record  to  text;
 //End  Record;
 ?>
+
+
+
+
+
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	  
+	  <script src="js/geo_mapbox_core.js"></script><!-- Main --> 
+	  <script src="js/js_objects/instruction.js"></script>  <!-- Instructions --> 
+	  <script src="js/js_objects/load_example.js"></script> <!-- load_example -->
+	  <script src="js/js_objects/clear_fields.js"></script><!-- clear_fields -->
+	  <script src="js/js_objects/split_coordinates.js"></script><!-- split_coordinates -->
+
 
 </body>
 </html>
