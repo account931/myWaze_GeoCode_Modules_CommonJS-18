@@ -20,6 +20,7 @@ function split_coordinates(){
 			
 	   this.d = this.arrayX2.length; //alert('address array contains -> ' + this.d);
 	   split_coordinates.hFinal='<br><p style="color:red;">RESULTS => found '+ this.d +  '</br> </br><input type="button" value="Copy" id="copybutton"><span id="flashMessage"></span> </br></br><table id="tableResults">';
+       return true;
    },
    // **                                                                                  **
    // **                                                                                  **

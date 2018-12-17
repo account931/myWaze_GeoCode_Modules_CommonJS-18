@@ -25,7 +25,10 @@ $(document).ready(function(){
         
 		var splitModule = new split_file();
 		
-		splitModule.getFormValue();
+		//if textarea is empty, stop it all
+		if(!splitModule.getFormValue()){
+			return false; 
+		}
 		
 		//Promise
 		$.when( splitModule.getAjaxCoordinates())
