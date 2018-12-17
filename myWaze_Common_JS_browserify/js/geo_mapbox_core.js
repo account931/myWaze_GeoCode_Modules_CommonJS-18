@@ -33,7 +33,7 @@ $(document).ready(function(){
 		//Promise
 		$.when( splitModule.getAjaxCoordinates())
 		   .then(function( ) {    
-                splitModule.displayResults();		   
+                //splitModule.displayResults();		   
                 setTimeout(splitModule.displayResults, 2000);               
            }); 
 		
