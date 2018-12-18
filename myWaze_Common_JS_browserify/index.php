@@ -26,12 +26,12 @@
    
    
    <div class="wrapper grey">
-     <div class="container">
+     <div class="container"><!-- container-full -->
 	   <div class="row row1">
 				 
        <div class="col-sm-12 col-xs-12 divX "> 
            <h2 class='text-primary'> <!-- class='shadowX' -->
-		        Modules <span class="font-18"> Geocoding => CommonJS</span>
+		        Geocoding  <span class="font-18"> Modules => CommonJS</span>
 		   </h2>
 		   
            <!--<img src="http://carbonmonoxidedetectorbeeping.com/wp-content/uploads/2015/02/carbon-monoxide-hazard-symbol.jpg"/><br>-->
@@ -68,7 +68,7 @@
          <!--END  INSTRUCTIONS-->
 
 		 
-		 <!-- MODULES -->
+		 <!-- Results -->
 		<h2 id="timeline"></h2><!--not used-->
         <p class="timeline"></p><!--not used-->
         <p id="resultFinal" style="padding-left:10px;background:#f5f5f0;"></p><!-- final  results  go  there-->
@@ -76,10 +76,10 @@
 
 
         <form action="">
-            <textarea id="coordsInput" rows="8" cols="80" style="width:96%;" > 
+            <textarea id="coordsInput" rows="8" cols="80" placeholder="Your address here to geocode..." style="width:96%;" > 
             </textarea>
 			<br>
-            <input type="button" class="btn btn-primary btn-md" value="Let's do it" id="splitButton">
+            <input type="button" class="btn btn-primary btn-md" value="Geocode it" id="splitButton">
         </form>
    </div>
    
@@ -104,7 +104,7 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	  
-	  <script src="js/bundle_js.js"></script>
+	  <script src="dist/js/bundle_js.js"></script>
 	  
 	  <!--<script src="js/geo_mapbox_core.js"></script><!-- Main --> 
 	  <!--<script src="js/js_objects/instruction.js"></script>  <!-- Instructions --> 

@@ -1,9 +1,10 @@
 
-
 var instruct_file = require('./js_modules/instructionZ.js');
 var clear_file = require('./js_modules/clear_fields.js');
 var loadExample_file = require('./js_modules/load_example.js');
 var split_file = require('./js_modules/split_coordinates.js');
+var copy_file = require('./js_modules/copy_process.js');
+var error_file = require('./js_modules/error_process.js');
 
 
 
@@ -11,7 +12,8 @@ var split_file = require('./js_modules/split_coordinates.js');
 
 
 
-//finding coordinates by address (G API).
+
+//finding coordinates by address (G API)
 
 $(document).ready(function(){
 
@@ -40,7 +42,11 @@ $(document).ready(function(){
 	
     });
 //END Click SPLIT  Button
-//*****************************************************************************************************************************************************
+// **                                                                                  **
+// **                                                                                  **
+// **************************************************************************************
+// **************************************************************************************
+
 	
 	
 
@@ -48,13 +54,17 @@ $(document).ready(function(){
 // **************************************************************************************
 // **************************************************************************************
 //                                                                                     **
-  $("#instructionButton").click(function(){
+  $("#instructionButton").click(function(){ 
 	  var instrModule = new instruct_file();
 	  instrModule.setInstruction();  //Module
       //instruction.loadInstructions();
     });
-//END Click Instructions  Button
-//***********************************************
+	
+// **                                                                                  **
+// **                                                                                  **
+// **************************************************************************************
+// **************************************************************************************
+
 	
 	
 	
@@ -68,8 +78,13 @@ $(document).ready(function(){
 		loadExampleModule.loadExampleCoordinates();
         //load_example.loadExampleCoordinates();
     });
-//END Click Example  Button
-//***************************************************
+	
+// **                                                                                  **
+// **                                                                                  **
+// **************************************************************************************
+// **************************************************************************************
+
+
 	
 	
 
@@ -82,14 +97,30 @@ $(document).ready(function(){
 		clearModule.clearFields(); //Module
         //clear_fields.clearFields();
     });
-//END CLEAR  Button
-//***********************************************
+// **                                                                                  **
+// **                                                                                  **
+// **************************************************************************************
+// **************************************************************************************
 
 
 
 
 
 
+
+
+//Copy Button
+// **************************************************************************************
+// **************************************************************************************
+//                                                                                     **
+    $(document).on("click", '#copybutton', function() {   // this  click  is  used  to   react  to  newly generated cicles;
+	    var copyModule = new copy_file();
+		copyModule.copy_to_clipboard(); //Module
+	});
+// **                                                                                  **
+// **                                                                                  **
+// **************************************************************************************
+// **************************************************************************************
 
 
 

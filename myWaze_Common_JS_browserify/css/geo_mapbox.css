@@ -46,11 +46,15 @@ body{
 
 .row1{margin-top:50px;}
 
-
+.red-color{color:red;}
 
 /*  ----------------Mobile */
 @media screen and (max-width: 460px) {  
     .divX{}
 	.row1{margin-top:0px;}
 	.select-my{margin-top:10px;}
+/*  ----------------Mobile */
+	
+	
 }
+

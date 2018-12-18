@@ -2,24 +2,27 @@
   "name": "example_modules",
   "version": "1.0.0",
   "description": "Updated version \r 1. Js rewritten with OBJECTS\r 2. CSS animation rotate",
-  "main": "index.js",
-  
+  "main": "geo_mapbox_core.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "browserify js/geo_mapbox_core.js > js/bundle_js.js -d",
-    "watch-js": "watchify js/geo_mapbox_core.js -o js/bundle_js.js -dv"
+    "build-js": "browserify js/geo_mapbox_core.js > dist/js/bundle_js.js -d",
+    "watch-js": "watchify js/geo_mapbox_core.js -o dist/js/bundle_js.js -dv"
   },
-  
   "author": "",
   "license": "ISC",
   
   "dependencies": {
     "jquery": "^3.3.1",
-    "underscore": "^1.9.1"
+    "underscore": "^1.9.1",
+    "vinyl-source-stream": "^2.0.0"
   },
-  
   "devDependencies": {
+    "browser-sync": "^2.26.3",
     "browserify": "latest",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglifyjs": "^0.6.2",
+    "vinyl-buffer": "^1.0.1",
     "watchify": "latest"
   }
 }

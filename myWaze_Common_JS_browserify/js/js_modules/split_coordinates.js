@@ -1,3 +1,6 @@
+var error_file = require('./error_process.js');
+
+
 function split_coordinates(){
 	
   this.d = "",
@@ -5,12 +8,17 @@ function split_coordinates(){
   this.dataX = "",
   this.hFinal = "",
 	
+  //gets addresses text from textarea	
   // **************************************************************************************
   // **************************************************************************************
   //                                                                                     **
   this.getFormValue = function(){
 	   if ($("#coordsInput").val().trim()==""){
-	     alert("Empty");
+	     //alert("Empty");
+		 //Display error
+		 var errorModule = new error_file();
+		 errorModule.showError();
+		 
          return false;		 
 	   }
 	   textareaX = $("#coordsInput").val(); //alert(textarea);
@@ -30,7 +38,7 @@ function split_coordinates(){
    
    
    
-	
+  //sends ajax to API
   // **************************************************************************************
   // **************************************************************************************
   //                                                                                     **
