@@ -1,0 +1,22 @@
+.textarea-my{
+	width:100%;
+	margin-top:1em;
+}
+
+#coordsInput{width:100%;}
+
+.textarea-my .btn{
+  display:block;
+
+}
+
+/*  ----------------Mobile */
+@media screen and (max-width: 640px) {
+	.textarea-my .btn{
+        
+     }
+
+}  
+ 
+/*  ----------------Mobile */
+	
