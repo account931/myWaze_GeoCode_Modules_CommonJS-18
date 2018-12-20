@@ -32,7 +32,7 @@ class ButtonsLayout extends Component {
    //--------------------------
    InstructClick() {
      $("#hiddenInstructions").toggle(1000);
-     if ($("#instructionButton").attr("value")=="instructions") {
+     if ($("#instructionButton").attr("value")==="instructions") {
                 $("#instructionButton").val(" _Close_ ");
 				//$("#instructionButton").css("background","red");
      } else {  
