@@ -13,35 +13,41 @@ class TextAreaX extends Component {
     };
  
     // This binding is necessary to make `this` work in the callback
-	this.getAjaxApiResult = this.getAjaxApiResult.bind(this); //runs all functions together
+	this.run_This_Component_Functions_In_Queue = this.run_This_Component_Functions_In_Queue.bind(this); //runs all functions together
 	this.getFormValue = this.getFormValue.bind(this);
     this.runAjax = this.runAjax.bind(this);
 	this.drawResult = this.drawResult.bind(this);
   }
   
-
+  
+   //just runs all functions together
   // **************************************************************************************
   // **************************************************************************************
   //                                                                                     **
-  getAjaxApiResult() {
-	  var promises = [];
-	  var temp = [];
+  run_This_Component_Functions_In_Queue() {
+	  var promises = [];  //array that will hold all promises
+	  var temp = [];     // temp array to store found coordinates before assigning it to this.state.coordinateArray
 	  
 	  this.getFormValue();
-	  this.runAjax(promises,temp);
+	  this.runAjax(promises,temp); //must pass {promises,temp} as arg to make them visible in function runAjax()
 	  //this.drawResult();  //assigned to Promise.all(promises)
 	  
+	  
 	  //All promises, The way to detect that all axios ajax were completed. 1. we add {var promises = [];} 2. {promises.push(every ajax)}
+	  //runs when for loop iteration axios ajax request are completed
 	  Promise.all(promises)
           .then(() => {
                alert("all promises " + temp);
-			   //adding array with with final ajax coordinates to state---------
+			   
+			   //adding array with with final ajax coordinates to this.state---------
 	           const coordsTempArray = this.state.coordinateArray; //getting state to array	
                coordsTempArray.push(temp); //adds to array in this way: addressArray = [[arrayX2]];	
                this.setState({ //sets new value to state
                    coordinateArray: coordsTempArray
                }); 
 		   alert("final state Promise.all length " + this.state.coordinateArray[0].length + " Array contains: " + this.state.coordinateArray[0]);
+		   
+		   //Draw the result
 		   this.drawResult();
 	  
           })
@@ -109,7 +115,7 @@ class TextAreaX extends Component {
    // **************************************************************************************
    // **************************************************************************************
    //                                                                                     **
-       runAjax(promises,temp) {
+       runAjax(promises,temp) { //must accept args {(promises,temp)} while calling in run_This_Component_Functions_In_Queue() 
 		   //var temp = []; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!! VISIBILITY
 		  // var promises = []; //add array to use in Promise.all(promises
 		   $("#loading").fadeIn(200); //show preloader
@@ -123,12 +129,12 @@ class TextAreaX extends Component {
                     //alert("inside" + temp);	
                     					
                 })
-				.then(function (response) {
+				.then(function (response) { //not neccessary to use this .then, just a test
                     //alert("then 2 " + temp);	  
                 })
 				
 			   .catch(function() { 
-                    alert('error');
+                    alert('Error. This iteration ajax failed.');
                })//;
 			   ); //end push		
 		   }
@@ -206,7 +212,7 @@ class TextAreaX extends Component {
 	   <div>
 	   <form className="textarea-my" >
             <textarea id="coordsInput" rows="8" cols="80" placeholder="Your address here to geocode..." /> 
-            <input type="button" className="btn btn-primary btn-md" value="Geocode" id="splitButton" onClick={this.getAjaxApiResult} />
+            <input type="button" className="btn btn-primary btn-md" value="Geocode" id="splitButton" onClick={this.run_This_Component_Functions_In_Queue} />
         </form>
 		</div>
 	  
