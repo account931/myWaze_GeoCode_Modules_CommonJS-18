@@ -9,12 +9,14 @@ class TextAreaX extends Component {
     super(props);
     this.state = {
 		addressArray: [],  //this state will hold array with separ addresses
-		coordinateArray: ['v'],  //this state will hold array with ready coordinates returned by axios
+		coordinateArray: [],  //this state will hold array with ready coordinates returned by axios
     };
  
     // This binding is necessary to make `this` work in the callback
-    this.getAjaxApiResult = this.getAjaxApiResult.bind(this);
+	this.getAjaxApiResult = this.getAjaxApiResult.bind(this); //runs all functions together
 	this.getFormValue = this.getFormValue.bind(this);
+    this.runAjax = this.runAjax.bind(this);
+	this.drawResult = this.drawResult.bind(this);
   }
   
 
@@ -22,8 +24,32 @@ class TextAreaX extends Component {
   // **************************************************************************************
   //                                                                                     **
   getAjaxApiResult() {
+	  var promises = [];
+	  var temp = [];
+	  
 	  this.getFormValue();
-	  this.runAjax();
+	  this.runAjax(promises,temp);
+	  //this.drawResult();  //assigned to Promise.all(promises)
+	  
+	  //All promises, The way to detect that all axios ajax were completed. 1. we add {var promises = [];} 2. {promises.push(every ajax)}
+	  Promise.all(promises)
+          .then(() => {
+               alert("all promises " + temp);
+			   //adding array with with final ajax coordinates to state---------
+	           const coordsTempArray = this.state.coordinateArray; //getting state to array	
+               coordsTempArray.push(temp); //adds to array in this way: addressArray = [[arrayX2]];	
+               this.setState({ //sets new value to state
+                   coordinateArray: coordsTempArray
+               }); 
+		   alert("final state Promise.all length " + this.state.coordinateArray[0].length + " Array contains: " + this.state.coordinateArray[0]);
+		   this.drawResult();
+	  
+          })
+          .catch((e) => {
+             // handle errors here
+          });
+	   // END all promises
+	  
   }
   // **                                                                                  **
   // **                                                                                  **
@@ -83,25 +109,58 @@ class TextAreaX extends Component {
    // **************************************************************************************
    // **************************************************************************************
    //                                                                                     **
-       runAjax() {
-		   var temp = []; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!! VISIBILITY
+       runAjax(promises,temp) {
+		   //var temp = []; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!! VISIBILITY
+		  // var promises = []; //add array to use in Promise.all(promises
+		   $("#loading").fadeIn(200); //show preloader
+		   
 		   for (let j = 0; j < this.state.addressArray[0].length; j++) { 
-               axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + this.state.addressArray[0][j] + '.json?country=us&access_token=pk.eyJ1IjoiYWNjb3VudDkzMSIsImEiOiJjaXgwOTVuOTEwMGFxMnVsczRwOWx0czhnIn0.YjZ5bpnh6jqTEk7cCJfrzw')   
+                promises.push(axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + this.state.addressArray[0][j] + '.json?country=us&access_token=pk.eyJ1IjoiYWNjb3VudDkzMSIsImEiOiJjaXgwOTVuOTEwMGFxMnVsczRwOWx0czhnIn0.YjZ5bpnh6jqTEk7cCJfrzw')   
                .then(function (response) {
                    //alert(JSON.stringify(response, null, 4)); 
                    //alert(response.data.features[0].center[1] +  ' = ' + response.data.features[0].center[0]);	
                     temp.push(response.data.features[0].center[1], response.data.features[0].center[0]);
-                    //alert(temp);						
-                });
+                    //alert("inside" + temp);	
+                    					
+                })
+				.then(function (response) {
+                    //alert("then 2 " + temp);	  
+                })
+				
+			   .catch(function() { 
+                    alert('error');
+               })//;
+			   ); //end push		
 		   }
-		   alert(temp);
-		   //adding arraay with with final ajax coordinates to state---------
-	       const coordsTempArray = this.state.coordinateArray; //getting state to array	
-           coordsTempArray.push(temp); //adds to array in this way: addressArray = [[arrayX2]];	
-           this.setState({ //sets new value to state
-               coordinateArray: coordsTempArray
-           }); 
-		   alert("final " + this.state.coordinateArray[0]);
+		    
+			
+		
+	  //All promises, The way to detect that all axios ajax were completed. 1. we add {var promises = [];} 2. {promises.push(every ajax)}
+	  /*
+	  Promise.all(promises)
+          .then(() => {
+               alert("all promises " + temp);
+			   //adding array with with final ajax coordinates to state---------
+	           const coordsTempArray = this.state.coordinateArray; //getting state to array	
+               coordsTempArray.push(temp); //adds to array in this way: addressArray = [[arrayX2]];	
+               this.setState({ //sets new value to state
+                   coordinateArray: coordsTempArray
+               }); 
+		   alert("final state Promise.all  " + this.state.coordinateArray[0]);
+		   this.drawResult();
+	  
+          })
+          .catch((e) => {
+             // handle errors here
+          });
+		*/
+	   // END all promises
+		  
+		 
+
+		  alert('out-> for loop is over, but ajax axios is not finished. That"s why array temp is underfined ' + temp);
+		  //setTimeout( "alert('out ' + temp)", 2000); 
+		   
 					
 	   }
    // **                                                                                  **
@@ -110,7 +169,38 @@ class TextAreaX extends Component {
    // **************************************************************************************
    
    
+   
+   //gets the textarea value, split it to arraye and set to state
+  // **************************************************************************************
+  // **************************************************************************************
+  //                                                                                     **
+  drawResult(){
+       $("#loading").fadeOut(1900); //hide preloader
+	   alert("draw  " + this.state.coordinateArray[0]);
+       let b = this.state.coordinateArray[0];
+       let res;
+       for (let i = 0; i < this.state.coordinateArray[0].length; i++){
+		   if(i % 2 == 0){
+	       res += "<p>" +  this.state.coordinateArray[0][i] + ", " +  this.state.coordinateArray[0][i+1] +"</p>";
+		   }
+       }
+	   
+	   // HTML  Result div  with  animation;
+        $("#resultFinal").stop().fadeOut("slow",function(){ 
+            $(this).html(res)
+        }).fadeIn(2000);
+
+        $("#resultFinal").css("border","1px solid red"); //  set  red  border  for  result  div
+   }
+   // **                                                                                  **
+   // **                                                                                  **
+   // **************************************************************************************
+   // **************************************************************************************
+   
+   
+   
   
+  //RENDER ------------------------------------------------
   render() {
     return (
 	   <div>
