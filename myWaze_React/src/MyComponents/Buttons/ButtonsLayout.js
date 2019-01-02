@@ -26,17 +26,23 @@ class ButtonsLayout extends Component {
    clearClick() {
      $("#coordsInput").val("");
 	 $("#resultFinal").hide(1000);
-	 this.InstructClick();
+	 //this.InstructClick();
+	 $("#hiddenInstructions").hide(1000);
+	 $("#copyButton").hide(1000); //hide copy button 
+	 
+	 
   }
   
    //--------------------------
    InstructClick() {
-     $("#hiddenInstructions").toggle(1000);
+     //$("#hiddenInstructions").toggle(1000);
      if ($("#instructionButton").attr("value")==="instructions") {
                 $("#instructionButton").val(" _Close_ ");
+				$("#hiddenInstructions").show(1000);
 				//$("#instructionButton").css("background","red");
      } else {  
 		        $("#instructionButton").val("instructions");
+				$("#hiddenInstructions").hide(1000);
 				//$("#instructionButton").css("background","grey");
 	 }	
    }

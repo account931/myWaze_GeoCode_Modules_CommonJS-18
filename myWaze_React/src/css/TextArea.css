@@ -1,6 +1,7 @@
 .textarea-my{
 	width:100%;
-	margin-top:1em;
+	margin-top:0;
+	padding: 2em;
 }
 
 #coordsInput{width:100%;}
@@ -20,3 +21,8 @@
  
 /*  ----------------Mobile */
 	
+	
+#tableResults{padding-bottom:3em;}
+td {width:100px;}
+
+#resultFinal{padding:2em;} /* padding in div */

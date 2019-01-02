@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+import logo from './logo.svg';
 import './css/App.css';
 import Header from './MyComponents/Header/Header';
 import ButtonsLayout from './MyComponents/Buttons/ButtonsLayout';
@@ -18,7 +18,9 @@ class App extends Component {
 	            <div className="row row1">
 				
                     <div className="col-sm-12 col-xs-12 divX App"> 
-		                <h4>myWaze React</h4>
+		                <h4>myWaze React 
+						    <img src={logo}  className="react-logo-static" alt="logo" />
+						</h4>
 			            <Header nameX = "ReactJS"/>  { /* header component*/ }
 						<ButtonsLayout/>  { /* buttons component */ }
 						<Instructions/>   { /* instructions component */ }

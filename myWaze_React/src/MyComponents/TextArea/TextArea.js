@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import '../../css/TextArea.css';
 import $ from 'jquery';
 import axios from 'axios';
+import CopyLayout from '../Copy/CopyLayout';
 
 class TextAreaX extends Component {
 	constructor(props) {
@@ -182,14 +183,20 @@ class TextAreaX extends Component {
   //                                                                                     **
   drawResult(){
        $("#loading").fadeOut(1900); //hide preloader
-	   alert("draw  " + this.state.coordinateArray[0]);
+	   alert("draw  " + this.state.coordinateArray[0] + " has length " + this.state.coordinateArray[0].length);
        let b = this.state.coordinateArray[0];
-       let res;
-       for (let i = 0; i < this.state.coordinateArray[0].length; i++){
-		   if(i % 2 == 0){
-	       res += "<p>" +  this.state.coordinateArray[0][i] + ", " +  this.state.coordinateArray[0][i+1] +"</p>";
+       let res = "<p class='red'>React Results found => " + this.state.coordinateArray[0].length/2 + "</p>"; //must be at least empty defined to avoid "undefined" appearance
+       //res += <CopyLayout/>;  { /* CopyLayout component */ }
+	   //res += "<input type='button' value='Copy' id='copybutton' onClick={CopyLayout.copy_table_result}><span id='flashMessage'></span>"; //copy button
+	   res += "<table id='tableResults'>"; //adding div that will be copied further
+	   
+	   for (let i = 0; i < this.state.coordinateArray[0].length; i++){
+		   if(i % 2 === 0){
+	       res += "<tr><td>" +  this.state.coordinateArray[0][i] + "</td><td> " +  this.state.coordinateArray[0][i+1] + "<td></tr>";
 		   }
        }
+	   
+	   res += "</table>";
 	   
 	   // HTML  Result div  with  animation;
         $("#resultFinal").stop().fadeOut("slow",function(){ 
@@ -197,6 +204,9 @@ class TextAreaX extends Component {
         }).fadeIn(2000);
 
         $("#resultFinal").css("border","1px solid red"); //  set  red  border  for  result  div
+		
+		$("#copyButton").css("display","block");
+		
    }
    // **                                                                                  **
    // **                                                                                  **
@@ -209,11 +219,14 @@ class TextAreaX extends Component {
   //RENDER ------------------------------------------------
   render() {
     return (
+	   
 	   <div>
+	   <CopyLayout/>
 	   <form className="textarea-my" >
             <textarea id="coordsInput" rows="8" cols="80" placeholder="Your address here to geocode..." /> 
             <input type="button" className="btn btn-primary btn-md" value="Geocode" id="splitButton" onClick={this.run_This_Component_Functions_In_Queue} />
         </form>
+		
 		</div>
 	  
     );
