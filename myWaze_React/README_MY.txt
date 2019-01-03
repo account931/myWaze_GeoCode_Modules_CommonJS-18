@@ -1,7 +1,7 @@
 Waze geocoding React version.
 #Works on MapBox Api, on js only, php side is not engaged.
 
-How irt works:
+How it works:
 1. Index.js is a JS entry point, it contains <App/> Component, 
 which contains all the rest component { <Header nameX = "ReactJS"/> , <ButtonsLayout/> , <Instructions/>, <TextAreaX/>}
 
