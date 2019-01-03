@@ -22,13 +22,16 @@ class ButtonsLayout extends Component {
   }
   
   
+  
+  
    //--------------------------
    clearClick() {
      $("#coordsInput").val("");
 	 $("#resultFinal").hide(1000);
 	 //this.InstructClick();
 	 $("#hiddenInstructions").hide(1000);
-	 $("#copyButton").hide(1000); //hide copy button 
+	 $("#instructionButton").val("instructions");
+	 $("#copyButton").hide(1000); //hide copy button Component
 	 
 	 
   }
@@ -50,7 +53,7 @@ class ButtonsLayout extends Component {
   
   render() {
     return (
-	 
+	  
 	    <div className="buttons">
 	        { /*<!-- Upper  buttons--> */ }
             <input type="button" value="example" id="examplebutton" className="btn btn-success btn-md el" onClick={this.exampleClick}/> 

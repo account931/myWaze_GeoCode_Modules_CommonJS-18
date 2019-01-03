@@ -1,6 +1,8 @@
-.buttons{margin-top:1em; align-items: left;}
-.buttons .el{margin-left:0.1em;margin-bottom:0.4em;}
+.buttons{margin-top:1em;  float: left;}
+.buttons .el{margin-left:0.1em;margin-bottom:0.2em;}
 
-.buttons .el:after {
+
+/* Not working */
+.buttons :after {
     clear: both;
 }

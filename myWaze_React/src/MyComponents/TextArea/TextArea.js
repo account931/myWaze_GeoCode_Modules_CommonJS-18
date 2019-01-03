@@ -18,6 +18,7 @@ class TextAreaX extends Component {
 	this.getFormValue = this.getFormValue.bind(this);
     this.runAjax = this.runAjax.bind(this);
 	this.drawResult = this.drawResult.bind(this);
+	//this.liftFinalCoordsHandler = this.liftFinalCoordsHandler.bind(this);
   }
   
   
@@ -50,6 +51,8 @@ class TextAreaX extends Component {
 		   
 		   //Draw the result
 		   this.drawResult();
+		   
+		   liftFinalCoordsHandler('Lifted_Coords');
 	  
           })
           .catch((e) => {
@@ -218,14 +221,18 @@ class TextAreaX extends Component {
   
   //RENDER ------------------------------------------------
   render() {
-    return (
+      var liftFinalCoordsHandler  =   this.props.liftFinalCoordsHandler ; //for lifting state up to parent
+	  
+      return (
 	   
-	   <div>
-	   <CopyLayout/>
-	   <form className="textarea-my" >
-            <textarea id="coordsInput" rows="8" cols="80" placeholder="Your address here to geocode..." /> 
-            <input type="button" className="btn btn-primary btn-md" value="Geocode" id="splitButton" onClick={this.run_This_Component_Functions_In_Queue} />
-        </form>
+	     <div>
+	         <CopyLayout/>
+	         <form className="textarea-my" >
+                 <textarea id="coordsInput" rows="8" cols="80" placeholder="Your address here to geocode..." /> 
+                 <input type="button" className="btn btn-primary btn-md" value="Geocode" id="splitButton" onClick={this.run_This_Component_Functions_In_Queue} />
+					 {/*<input type="button"  value="Lift Coords" onClick={() => liftFinalCoordsHandler('Lifted_TextArea')}/> */}
+				  
+             </form>
 		
 		</div>
 	  

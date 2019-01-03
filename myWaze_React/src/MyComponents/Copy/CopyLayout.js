@@ -66,7 +66,7 @@ class CopyLayout extends Component {
     return (
 	    <p>
 	    <input type="button" className="btn btn-primary btn-md" value="<CopyLayout/>" id="copyButton" onClick={this.copy_table_result} />   
-		<span id='flashMessage' class='red'></span>
+		<span id='flashMessage' className='red'></span>
 		
 		{/* Hidden loading copy indicator */}
 		<span id='copy_loading'>

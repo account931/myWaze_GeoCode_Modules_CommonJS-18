@@ -6,7 +6,7 @@ class Results extends Component {
   render() {
     return (
 	    <div className="results" id="resultFinal">
-	        { /*  final  results  go  there  */}
+	        { /*  final  results  go  there  */} 
         </div>
 	  
     );
