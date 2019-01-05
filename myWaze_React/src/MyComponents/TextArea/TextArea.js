@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import logo from '../../images/api.jpeg';
+import error from '../../images/error.gif';
 import '../../css/TextArea.css';
 import $ from 'jquery';
 import axios from 'axios';
@@ -30,7 +30,20 @@ class TextAreaX extends Component {
 	  var promises = [];  //array that will hold all promises
 	  var temp = [];     // temp array to store found coordinates before assigning it to this.state.coordinateArray
 	  
-	  this.getFormValue();
+	  //if texarea is empty, stop anything further
+	  if(this.getFormValue() === false)
+	  {
+		  
+          //$('.row1 p:not(.error-parent)').css("opacity", "0.1");    
+		  //$(*:not(.error-parent).css("opacity", "0.1"); 
+		  //$(".error-parent").css("opacity", "1");
+		  $(".error-parent").fadeIn(2000);
+		  $(".error-parent").fadeOut(6000);
+		  //$('body').fadeIn(4000);
+		  return false;
+	  }
+	  
+	  //run axios ajax in loop
 	  this.runAjax(promises,temp); //must pass {promises,temp} as arg to make them visible in function runAjax()
 	  //this.drawResult();  //assigned to Promise.all(promises)
 	  
@@ -52,7 +65,8 @@ class TextAreaX extends Component {
 		   //Draw the result
 		   this.drawResult();
 		   
-		   liftFinalCoordsHandler('Lifted_Coords');
+		   // calling parent method from child {this.props. + method}-> passing/uplifting array with found coords, described in Parent App.js
+		   this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])/*('Lifted_Coords_Array')*/;//!!!!!!!!!!!!!  
 	  
           })
           .catch((e) => {
@@ -221,7 +235,7 @@ class TextAreaX extends Component {
   
   //RENDER ------------------------------------------------
   render() {
-      var liftFinalCoordsHandler  =   this.props.liftFinalCoordsHandler ; //for lifting state up to parent
+      //var liftFinalCoordsHandler  =   this.props.liftFinalCoordsHandler ; //for lifting state up to parent
 	  
       return (
 	   

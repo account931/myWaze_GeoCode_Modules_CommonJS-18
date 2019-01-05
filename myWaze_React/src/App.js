@@ -8,6 +8,8 @@ import Results from './MyComponents/Result/Results';
 import TextAreaX from './MyComponents/TextArea/TextArea';
 import LiftedFrom_Component from './MyComponents/LiftUpComponent/LiftedFrom_Component';
 import LiftedTo_Component from './MyComponents/LiftUpComponent/LiftedTo_Component';
+import ErrorLayout from './MyComponents/Error/ErrorLayout';
+
 
 
 
@@ -16,8 +18,8 @@ class App extends Component {
         super(props);
 		
 		this.state = {
-		    arg1: '',  //this state will hold lifted up var
-		    finalCoords:[],
+		    arg1: '',  //this state will hold lifted up var(onClick) or  array with coordinates
+		    finalCoords:[], //not used???
         };
 	   
         var handleToUpdate = this.handleToUpdate.bind(this);  //for catching lifted state from LiftedFrom_Component
@@ -25,17 +27,17 @@ class App extends Component {
                                             
     }
 
-	//for catching lifted state from LiftedFrom_Component
+	//methodfor catching lifted state from LiftedFrom_Component, triggerd onClick
     handleToUpdate(someArg){
             alert('We pass argument from Child to Parent: ' + someArg);
             this.setState({arg1:someArg});
     }
 	
 	
-	//for catching lifted state from LiftedFrom_Component
-    liftFinalCoordsHandler(someArg){
-            alert('TextArea from Child to Parent: ' + someArg);
-            this.setState({arg1:someArg});
+	//method for catching lifted state from TextArea.js Component, triggered manually by {this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])} in TerxArea.js
+    liftFinalCoordsHandler(someArgCoords){
+            alert('TextArea from Child(TextArea.js) to Parent(App.js): ' + someArgCoords);
+            this.setState({arg1:someArgCoords});
     }
 	
 	
@@ -44,7 +46,7 @@ class App extends Component {
 	
   render() {
 	  var handleToUpdate  =   this.handleToUpdate; //for catching lifted state from LiftedFrom_Component
-	  var liftFinalCoordsHandler  =   this.liftFinalCoordsHandler; //for catching lifted state from LiftedFrom_Component
+	  var liftFinalCoordsHandler  =   this.liftFinalCoordsHandler; //for catching lifted state from TextArea.js Component
 	  
     return (
 	 
@@ -63,6 +65,7 @@ class App extends Component {
 						<Instructions/>    { /* instructions component */ }
 						<Results/>         { /* results component */ }
 						<TextAreaX liftFinalCoordsHandler = {liftFinalCoordsHandler.bind(this)}/>       { /* textarea component */ }
+						<ErrorLayout/>
 						
 						<LiftedFrom_Component handleToUpdate = {handleToUpdate.bind(this)}/> { /* LiftedComponent component  //for catching lifted state from LiftedFrom_Component */ }
 						<LiftedTo_Component liftedValue={this.state.arg1}/>        { /* LiftedComponent component */ }

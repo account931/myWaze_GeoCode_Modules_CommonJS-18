@@ -24,7 +24,7 @@ when all axios requests are completed {promises.push(axios.get('https://api.mapb
  
 ==================================================
 
-How to uplift var value from child component to Parent state:
+How to uplift var value from child component to Parent state onClick:
 1. In Child comp add to render section => {  render() { var handleToUpdate  = this.props.handleToUpdate;}
 2. In Child comp add to return section => {<button onClick={() => handleToUpdate('some var to lift')}>}
 3. In Parent comp add to constructor(props){} =>  var handleToUpdate = this.handleToUpdate.bind(this);
@@ -32,8 +32,15 @@ How to uplift var value from child component to Parent state:
 5. In Parent comp call the Child component itself => <LiftedFrom_Component handleToUpdate = {handleToUpdate.bind(this)}/>
 
 
-
-
+How to uplift var value from child component to Parent state manually:
+1. In Child comp in a place u want, call the parent method and pass to its arg neccessary values data {this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])}
+2. In Parent comp add  binding to constructor(props){} =>var liftFinalCoordsHandler = this.liftFinalCoordsHandler.bind(this);  //for catching lifted state from TextArea Comp
+3. In Parent comp describe the method and what to do with passed argument=>
+   //method for catching lifted state from TextArea.js Component, triggered manually by {this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])} in TerxArea.js
+    liftFinalCoordsHandler(someArgCoords){
+        alert('TextArea from Child(TextArea.js) to Parent(App.js): ' + someArgCoords);
+        this.setState({arg1:someArgCoords});
+    }
 
 
 ====================================================
