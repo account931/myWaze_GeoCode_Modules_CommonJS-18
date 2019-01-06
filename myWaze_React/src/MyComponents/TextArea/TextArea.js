@@ -18,6 +18,7 @@ class TextAreaX extends Component {
 	this.getFormValue = this.getFormValue.bind(this);
     this.runAjax = this.runAjax.bind(this);
 	this.drawResult = this.drawResult.bind(this);
+	this.htmlAnyResult = this.htmlAnyResult.bind(this);
 	//this.liftFinalCoordsHandler = this.liftFinalCoordsHandler.bind(this);
   }
   
@@ -33,14 +34,19 @@ class TextAreaX extends Component {
 	  //if texarea is empty, stop anything further
 	  if(this.getFormValue() === false)
 	  {
+           $('.App').addClass('blur');  //blue the background
+		   $(".error-parent").fadeIn(2500); //show error gif
+		
+		   setTimeout(function(){
+              $('.App').removeClass('blur'); //removes blue
+			  $(".error-parent").fadeOut(1000); //hide error gif
+           }, 4000); // A delay of 1000ms
+		   
+		   //display error text with function
+		   this.htmlAnyResult("<h2 class='red'>You submitted Empty Input</h2>");
 		  
-          //$('.row1 p:not(.error-parent)').css("opacity", "0.1");    
-		  //$(*:not(.error-parent).css("opacity", "0.1"); 
-		  //$(".error-parent").css("opacity", "1");
-		  $(".error-parent").fadeIn(2000);
-		  $(".error-parent").fadeOut(6000);
-		  //$('body').fadeIn(4000);
-		  return false;
+
+		  return false; //must have to stop futher Action
 	  }
 	  
 	  //run axios ajax in loop
@@ -91,7 +97,7 @@ class TextAreaX extends Component {
   getFormValue(){
 	  if ($("#coordsInput").val().trim()===""){
 		 //Display error
-		 alert("empty");
+		 //alert("empty");
          return false;		 
 	   }
 	   let textareaX = $("#coordsInput").val(); //alert(textarea);
@@ -232,6 +238,27 @@ class TextAreaX extends Component {
    
    
    
+   //Logik to Html the result with function
+  // **************************************************************************************
+  // **************************************************************************************
+  //                                                                                     **
+  htmlAnyResult(textX){
+	  $("#resultFinal").stop().fadeOut("slow",function(){ 
+	   
+            $(this).html(textX)
+	   
+       }).fadeIn(11000);
+
+       $("#resultFinal").css("border","1px solid red"); //  set  red  border  for  result  div 
+  }
+   // **                                                                                  **
+   // **                                                                                  **
+   // **************************************************************************************
+   // **************************************************************************************
+   
+  
+  
+  
   
   //RENDER ------------------------------------------------
   render() {

@@ -26,7 +26,7 @@ class LiftedFrom_Component extends Component {
 		   <p>
 		   Lifted up state from LiftedFrom_Component
 		   </p>
-		   <button onClick={() => handleToUpdate('Lifted_Var')}>
+		   <button onClick={() => handleToUpdate('Lifted UP Variable')}>
             Push me up from LiftedFrom_Component
            </button>
 	   </div>

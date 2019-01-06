@@ -2,7 +2,7 @@
 .error-parent{
 	display:none;
 	position:absolute;
-	top:0; left:0;
+	top:3em; left:28%;
 	overflow:hidden; /* no scroll to shake page */
 	} 
 

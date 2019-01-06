@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TrendTopic from './TrendTopic';
 //import logo from '../../images/api.jpeg';
 //import '../../css/LiftedComponent.css';
 //import $ from 'jquery';
@@ -11,17 +12,25 @@ class LiftedTo_Component extends Component {
         };
    }
   
-  
+ 
   
   //RENDER ------------------------------------------------
   render() {
 	  
     return (
 	   
-	   <div>
+	   <div className="lifted-to">
 		   <h4>
 		       LiftedTo_Component is => {this.props.liftedValue}
-		   </h4>
+		   </h4>   
+		   
+
+
+ 
+
+			   
+			   
+		  
 		   
 	   </div>
 	  

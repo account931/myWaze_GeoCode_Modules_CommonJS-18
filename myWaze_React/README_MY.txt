@@ -24,15 +24,16 @@ when all axios requests are completed {promises.push(axios.get('https://api.mapb
  
 ==================================================
 
-How to uplift var value from child component to Parent state onClick:
+How to uplift var value from child component to Parent state, triggede on direct onClick action:
 1. In Child comp add to render section => {  render() { var handleToUpdate  = this.props.handleToUpdate;}
 2. In Child comp add to return section => {<button onClick={() => handleToUpdate('some var to lift')}>}
 3. In Parent comp add to constructor(props){} =>  var handleToUpdate = this.handleToUpdate.bind(this);
 4. In Parent comp add to constructor(props){} the body of method/func  => handleToUpdate(someArg){this.setState({arg1:someArg});}
 5. In Parent comp call the Child component itself => <LiftedFrom_Component handleToUpdate = {handleToUpdate.bind(this)}/>
 
+==========
 
-How to uplift var value from child component to Parent state manually:
+How to uplift var value from child component to Parent state manually, triggered in some child function:
 1. In Child comp in a place u want, call the parent method and pass to its arg neccessary values data {this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])}
 2. In Parent comp add  binding to constructor(props){} =>var liftFinalCoordsHandler = this.liftFinalCoordsHandler.bind(this);  //for catching lifted state from TextArea Comp
 3. In Parent comp describe the method and what to do with passed argument=>
@@ -41,7 +42,8 @@ How to uplift var value from child component to Parent state manually:
         alert('TextArea from Child(TextArea.js) to Parent(App.js): ' + someArgCoords);
         this.setState({arg1:someArgCoords});
     }
-
+4. In Parent comp add to render section => var liftFinalCoordsHandler =  this.liftFinalCoordsHandler ;
+5. In Parent comp call Child Component itself with params=> <TextAreaX liftFinalCoordsHandler = {liftFinalCoordsHandler.bind(this)}/>, no matter it is not triggered on click
 
 ====================================================
 

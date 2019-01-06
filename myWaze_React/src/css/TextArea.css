@@ -26,3 +26,18 @@
 td {width:100px;}
 
 #resultFinal{padding:2em;} /* padding in div */
+
+
+.App {  
+   /* transition-duration: 5s; */
+}
+
+.blur{
+	transition-duration: 1s;
+	-moz-filter: blur(15px);
+     -ms-filter: blur(15px);
+     -o-filter: blur(15px);
+     -webkit-filter: blur(15px);
+     filter: blur(15px);
+	}
+	
