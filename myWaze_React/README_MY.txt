@@ -20,7 +20,9 @@ when all axios requests are completed {promises.push(axios.get('https://api.mapb
 2.4 Thirdly, in {{run_This_Component_Functions_In_Queue}} we check if all axios are finished -> Promise.all(promises).then(() => {...},
  assign temporay array with axios results to state=> this.state.coordinateArray and start this.drawResult();
  
- 
+3. Component description
+3.1 <Technical_Info> !!!!!!!!!!!!!!!!
+3.2 <ErrorLayout/>
  
 ==================================================
 
