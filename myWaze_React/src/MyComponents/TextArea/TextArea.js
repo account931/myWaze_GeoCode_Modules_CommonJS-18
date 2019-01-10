@@ -31,15 +31,23 @@ class TextAreaX extends Component {
 	  var promises = [];  //array that will hold all promises
 	  var temp = [];     // temp array to store found coordinates before assigning it to this.state.coordinateArray
 	  
-	  //if texarea is empty, stop anything further
+	  
+	   //Resetting state to Null ,calling parent method from child {this.props. + method}-> passing/uplifting alert info, described in Parent App.js
+	   this.props.techInfoHandler("");   
+	  
+	  
+	  
+	  //if texarea is empty, stop anything further, show/hide <Error/> component
 	  if(this.getFormValue() === false)
 	  {
-           $('.App').addClass('blur');  //blue the background
-		   $(".error-parent").fadeIn(2500); //show error gif
+		   $("html, body").animate({ scrollTop: 0 }, "slow"); //scroll to top
+		   
+           $('.App').addClass('blur');  //blur the background
+		   $(".error-parent").fadeIn(2500); //show error gif from <Error/>
 		
 		   setTimeout(function(){
-              $('.App').removeClass('blur'); //removes blue
-			  $(".error-parent").fadeOut(1000); //hide error gif
+              $('.App').removeClass('blur'); //removes blur
+			  $(".error-parent").fadeOut(1000); //hide error gif from <Error/>
            }, 4000); // A delay of 1000ms
 		   
 		   //display error text with function
@@ -58,7 +66,10 @@ class TextAreaX extends Component {
 	  //runs when for loop iteration axios ajax request are completed
 	  Promise.all(promises)
           .then(() => {
-               alert("all promises " + temp);
+               //alert("all promises " + temp); //reassigned to this.props.techInfoHandler
+               //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
+		       this.props.techInfoHandler("all promises " + temp);   /*('Lifted_Coords_Array')*/
+	  
 			   
 			   //adding array with with final ajax coordinates to this.state---------
 	           const coordsTempArray = this.state.coordinateArray; //getting state to array	
@@ -66,12 +77,15 @@ class TextAreaX extends Component {
                this.setState({ //sets new value to state
                    coordinateArray: coordsTempArray
                }); 
-		   alert("final state Promise.all length " + this.state.coordinateArray[0].length + " Array contains: " + this.state.coordinateArray[0]);
+			   
+		   //alert("final state Promise.all length " + this.state.coordinateArray[0].length + " Array contains: " + this.state.coordinateArray[0]); //reassigned to this.props.techInfoHandler
+		   //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
+		   this.props.techInfoHandler("final state Promise.all length " + this.state.coordinateArray[0].length + " Array contains: " + this.state.coordinateArray[0]);   
 		   
 		   //Draw the result
-		   this.drawResult();
+		   //this.drawResult();  //reassigned to <Result/>, now result is drawn from state.arg1 in App.js
 		   
-		   // calling parent method from child {this.props. + method}-> passing/uplifting array with found coords, described in Parent App.js
+		   // calling parent method from child {this.props. + method}-> passing/uplifting array with found coords to App.js, method is described in Parent App.js
 		   this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])/*('Lifted_Coords_Array')*/;//!!!!!!!!!!!!!  
 	  
           })
@@ -103,7 +117,10 @@ class TextAreaX extends Component {
 	   let textareaX = $("#coordsInput").val(); //alert(textarea);
        textareaX = textareaX.trim();
 	   let arrayX2 = textareaX.split('\n');
-	   alert(arrayX2 );
+	   
+	   //alert(arrayX2);  //reassigned to this.props.techInfoHandler
+	   //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
+	   this.props.techInfoHandler("arrayX2: " + arrayX2);   
 	   
 	   //this.setState(prevState => ({
       // addressArray: [prevState.addressArray, arrayX2]
@@ -124,8 +141,9 @@ class TextAreaX extends Component {
 	   //END adding arraay with address to state-----
 	   
 	     
-	   alert(this.state.addressArray[0][0]);
-	   //$("#coordsInput").val(this.state.addressArray);
+	   //alert(this.state.addressArray[0][0]);
+	   //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
+	   this.props.techInfoHandler("this.state.addressArray[0][0] => " + this.state.addressArray[0][0]); 
   }
   // **                                                                                  **
   // **                                                                                  **
@@ -188,7 +206,10 @@ class TextAreaX extends Component {
 		  
 		 
 
-		  alert('out-> for loop is over, but ajax axios is not finished. That"s why array temp is underfined ' + temp);
+		  //alert('out-> for loop is over, but ajax axios is not finished. That"s why array temp is underfined ' + temp);
+		  //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
+	      this.props.techInfoHandler('out-> for loop is over, but ajax axios is not finished. That"s why array temp is underfined ' + temp); 
+	   
 		  //setTimeout( "alert('out ' + temp)", 2000); 
 		   
 					
@@ -200,13 +221,17 @@ class TextAreaX extends Component {
    
    
    
-   //gets the textarea value, split it to arraye and set to state
+   //gets the textarea value, split it to arraye and set to state -> NOT USED ->reassigned to <Result/> using state values
   // **************************************************************************************
   // **************************************************************************************
   //                                                                                     **
   drawResult(){
        $("#loading").fadeOut(1900); //hide preloader
-	   alert("draw  " + this.state.coordinateArray[0] + " has length " + this.state.coordinateArray[0].length);
+	   
+	   //alert("draw  " + this.state.coordinateArray[0] + " has length " + this.state.coordinateArray[0].length);
+	   //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
+	   this.props.techInfoHandler("draw:  " + this.state.coordinateArray[0] + " has length " + this.state.coordinateArray[0].length); 
+	   
        let b = this.state.coordinateArray[0];
        let res = "<p class='red'>React Results found => " + this.state.coordinateArray[0].length/2 + "</p>"; //must be at least empty defined to avoid "undefined" appearance
        //res += <CopyLayout/>;  { /* CopyLayout component */ }

@@ -20,9 +20,12 @@ class LiftedTo_Component extends Component {
     return (
 	   
 	   <div className="lifted-to">
-		   <h4>
-		       LiftedTo_Component is => {this.props.liftedValue}
-		   </h4>   
+		   <h5>
+		       <p className="underline">
+		           LiftedTo_Component is => 
+			   </p>
+			   {this.props.liftedValue} {/* here goes lifted from Parent app.js value*/}
+		   </h5>   
 		   
 
 

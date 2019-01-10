@@ -18,16 +18,18 @@ class LiftedFrom_Component extends Component {
   
   //RENDER ------------------------------------------------
   render() {
-	  var handleToUpdate  =   this.props.handleToUpdate;
+	  var handleToUpdate =  this.props.handleToUpdate;
     return (
 	   
 	   <div>
-	       <p></p><p></p><p>...</p>
-		   <p>
-		   Lifted up state from LiftedFrom_Component
+	       <p></p>
+		   <p></p>
+		   <p>...</p>
+		   <p className="underline">
+		       {/*Lifted up state from LiftedFrom_Component*/}
 		   </p>
-		   <button onClick={() => handleToUpdate('Lifted UP Variable')}>
-            Push me up from LiftedFrom_Component
+		   <button onClick={() => handleToUpdate('Passed/Lifted-up Variable')}>
+                Push/Lift me up from LiftedFrom_Component
            </button>
 	   </div>
 	  
