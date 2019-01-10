@@ -7,9 +7,10 @@ import Instructions from './MyComponents/Instructions/Instructions';
 import Results from './MyComponents/Result/Results';
 import TextAreaX from './MyComponents/TextArea/TextArea';
 import LiftedFrom_Component from './MyComponents/LiftUpComponent/LiftedFrom_Component';
-import LiftedTo_Component from './MyComponents/LiftUpComponent/LiftedTo_Component';
+
 import ErrorLayout from './MyComponents/Error/ErrorLayout';  //display error gif
-import State_Array_List_Builder from './MyComponents/Build_List_from_State_Array/State_Array_List_Builder'; 
+
+import Technical_Info from './MyComponents/Tech_Info/Technical_Info';  //displays info instead of alert
 
 
 
@@ -20,46 +21,57 @@ class App extends Component {
 		this.state = {
 		    arg1: [],  //this state will hold lifted up var(onClick) or  array with coordinates
 		    finalCoords:[], //not used???
+			techInfoState:[] //state to store alert info
         };
 	   
         var handleToUpdate = this.handleToUpdate.bind(this);  //for catching lifted state from LiftedFrom_Component
 		var liftFinalCoordsHandler = this.liftFinalCoordsHandler.bind(this);  //for catching lifted state from TextArea Comp
-		var clearStateHandler = this.clearStateHandler.bind(this);
+		var clearStateHandler = this.clearStateHandler.bind(this);  //cathes lifted state from Buttons layout - //for lifting and clearing the state up in the parent
+		var techInfoHandler = this.techInfoHandler.bind(this);  //for lifting techInfo(instead of alerts)the state up in the parent
                                             
     }
 
 	//methodfor catching lifted state from LiftedFrom_Component, triggerd onClick
     handleToUpdate(someArg){
-            alert('We pass argument from Child to Parent: ' + someArg);
+            alert('We pass argument from Child to Parent (now we are in <App/>): ' + someArg);
             this.setState({arg1:someArg});
     }
 	
 	
 	//method for catching lifted state from TextArea.js Component, triggered manually by {this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])} in TerxArea.js
     liftFinalCoordsHandler(someArgCoords){
-            alert('TextArea value data lifted from Child(TextArea.js) to Parent(App.js): ' + someArgCoords);
+            //alert('TextArea value data lifted from Child(TextArea.js) to Parent(App.js): ' + someArgCoords);
+			//instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
+	       this.techInfoHandler('TextArea value data lifted from Child(TextArea.js) to Parent(App.js): ' + someArgCoords); 
+			
             this.setState({arg1:someArgCoords});
     }
 	
-	//NOT WORKING!!!!!!!!!!!!!!!!!
+	//WORKING!!!!!!!!!!!!!!!!!
 	clearStateHandler(vv){
             alert('Cleared' + vv);
             this.setState({arg1:''});
     }
 	
 	
-	
-	
+	//for lifting techInfo(instead of alerts)the state up in the parent
+	techInfoHandler(techAlert){
+		const alertTempArray = this.state.techInfoState; //getting state to temp array
+		alertTempArray.push(techAlert); //adds to array in this way: addressArray = [[arrayX2]];
+		this.setState({ //sets new value to state
+           techInfoState: alertTempArray
+       }); 
+	}
 	
 
 
 	
 	
   render() {
-	  var handleToUpdate  =   this.handleToUpdate; //for catching lifted state from LiftedFrom_Component
+	  var handleToUpdate =  this.handleToUpdate; //for catching lifted state from LiftedFrom_Component
 	  var liftFinalCoordsHandler  =   this.liftFinalCoordsHandler; //for catching lifted state from TextArea.js Component
 	  var clearStateHandler =  this.clearStateHandler ; //for lifting and clearing the state up in the parent
-
+      var techInfoHandler = this.techInfoHandler;  //for lifting techInfo(instead of alerts)the state up in the parent
 	  
     return (
 	 
@@ -76,14 +88,18 @@ class App extends Component {
 			            <Header nameX = "ReactJS"/>  { /* header component*/ }
 						<ButtonsLayout clearStateHandler = {clearStateHandler.bind(this)}/>   { /* buttons component */ }
 						<Instructions/>    { /* instructions component */ }
-						<Results/>         { /* results component */ }
-						<TextAreaX liftFinalCoordsHandler = {liftFinalCoordsHandler.bind(this)}/>       { /* CORE textarea component */ }
+						<Results resultX={this.state.arg1}/>         { /* results component */ }
+						<TextAreaX liftFinalCoordsHandler = {liftFinalCoordsHandler.bind(this)}  techInfoHandler={techInfoHandler.bind(this)}/>       { /* CORE textarea component */ }
 					
+					
+						<Technical_Info techInfoData={this.state.techInfoState}  numbers={this.state.arg1}  handleToUpdate = {handleToUpdate.bind(this)} /> { /* displays info instead of alert */ }
 						
-						<LiftedFrom_Component handleToUpdate = {handleToUpdate.bind(this)}/> { /* LiftedComponent component, send/uplift value onClick to App.js */ }
-						<LiftedTo_Component liftedValue={this.state.arg1}/>        { /* LiftedComponent component for catching lifted state from LiftedFrom_Component to App.js */ }
+						{ /* Componenents that has gone to Technical_Info : <LiftedFrom_Component handleToUpdate = {handleToUpdate.bind(this)}/> +   <LiftedTo_Component liftedValue={this.state.arg1}/> + <State_Array_List_Builder numbers={this.state.arg1}  />  */}
 						
-						<State_Array_List_Builder numbers={this.state.arg1} />  {/* Component creates List from State Array*/}
+						
+			            
+						
+						
 		            </div>
 					
 			    </div>
