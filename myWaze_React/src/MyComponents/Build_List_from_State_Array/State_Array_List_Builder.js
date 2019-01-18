@@ -17,7 +17,7 @@ class State_Array_List_Builder extends Component {
 	   if(this.props.numbers === ''){ //if props empty stop it
 		   return false;
 	   }
-	    alert("String detected in State_Array_List_Builder");
+	    //alert("String detected in State_Array_List_Builder");
 		//instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
 	    //this.props.techInfoHandler("String detected in State_Array_List_Builder"); 
 		
@@ -25,7 +25,7 @@ class State_Array_List_Builder extends Component {
 		
 	} else {
 		
-	   //alert("Array");
+	   //alert("Array in State_Array_List_Builder ");
        constructed_answer = this.props.numbers.map((number, i, arrayZ) =>{ {/* maps() args=>(content, iterator, arryitself)*/}
 	       if (i%2 === 0) {
 	       return(
