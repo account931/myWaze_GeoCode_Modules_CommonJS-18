@@ -34,10 +34,14 @@ class TextAreaX extends Component {
 	  //temp.splice(0, temp.length);
 	  
 	  
+	   //Resetting state to Null ,calling parent method from child {this.props. + method}-> passing/uplifting alert info, described in Parent App.js
+	   //this.props.techInfoHandler("");   
+	   this.props.reset_techInfo_State();
+	  
 	  
 	  
 	  //if texarea is empty, stop anything further, show/hide <Error/> component
-	  if(this.getFormValue(/*promises,temp*/) === false)
+	  if(this.getFormValue(promises,temp) === false)
 	  {
 		   $("html, body").animate({ scrollTop: 0 }, "slow"); //scroll to top
 		   
@@ -57,9 +61,7 @@ class TextAreaX extends Component {
 	  }
 	  
 	  
-       //Resetting state to Null ,calling parent method from child {this.props. + method}-> passing/uplifting alert info, described in Parent App.js
-	   //this.props.techInfoHandler("");   
-	   this.props.reset_techInfo_State("x");
+    	//this.getFormValue(promises,temp);
 		
 	
 
@@ -67,7 +69,7 @@ class TextAreaX extends Component {
 	  
 	  
 	  //run axios ajax in loop
-	   this.runAjax(promises,temp); //must pass {promises,temp} as arg to make them visible in function runAjax()//!!!!!!! RETURN ME===============
+	   //this.runAjax(promises,temp); //must pass {promises,temp} as arg to make them visible in function runAjax()//!!!!!!! RETURN ME===============
 	  //this.drawResult();  //assigned to Promise.all(promises)
 	  
 	  
@@ -76,7 +78,7 @@ class TextAreaX extends Component {
 	  Promise.all(promises)
           .then(() => {
 			  alert("this.state.addressArray " + this.state.addressArray.length);
-               alert("all promises, temp= " + temp); //reassigned to this.props.techInfoHandler
+               alert("all promises " + temp); //reassigned to this.props.techInfoHandler
                //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
 		       this.props.techInfoHandler("all promises " + temp);   /*('Lifted_Coords_Array')*/
 	  
@@ -84,43 +86,70 @@ class TextAreaX extends Component {
 	            //=======================================================================================
 			   // MEGA ERROR FIX !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 			   //adding array with with final ajax coordinates to this.state---------
-	           let coordsTempArray = this.state.coordinateArray; // =[]; //getting state to array	
+	           let coordsTempArray = []; //this.state.coordinateArray; //getting state to array	
 			   //coordsTempArray = []; //resting it !!!!!!!
                coordsTempArray.push(temp); //adds to array in this way: addressArray = [[arrayX2]];	
                
-			   
+			   /*
 			   this.setState({ //sets new value to state
                    coordinateArray: temp //coordsTempArray //temp
                }); 
-			   
+			   */
 			   
 			   
 			   //Calls this.drawResult(); only after finished setting state
-			   /*
+			   
 			   this.setState({
                    coordinateArray: coordsTempArray //temp
                }, () => {
                alert("SET COORDS STATE IS DONE, READY TO draw");//this.drawResult();
                });
-	           */
+	           
 			   
 			   
-			  
+			   
+			   
+			   
+			   
+			   //DRAW VAR 222222222222	
+		alert("Draw 2" + temp);
+	  let res = "<p class='red'>React Results found => " + temp/2 + "</p>"; //must be at least empty defined to avoid "undefined" appearance
+       //res += <CopyLayout/>;  { /* CopyLayout component */ }
+	   //res += "<input type='button' value='Copy' id='copybutton' onClick={CopyLayout.copy_table_result}><span id='flashMessage'></span>"; //copy button
+	   res += "<table id='tableResults'>"; //adding div that will be copied further
+	   
+	   for (let i = 0; i < temp.length; i++){
+		   if(i % 2 === 0){
+	       res += "<tr><td>" +  temp[i] + "</td><td> " +  temp[i+1] + "<td></tr>";
+		   }
+       }
+	   
+	   res += "</table>";
+	   
+	   // HTML  Result div  with  animation;
+        $("#resultFinal").stop().fadeOut("slow",function(){ 
+            $(this).html(res)
+        }).fadeIn(2000);
+
+        $("#resultFinal").css("border","1px solid red"); //  set  red  border  for  result  div
+		
+		$("#copyButton").css("display","block");
+		// END DRAW VAR 2 ----------------------------------------------------------
 		
 		
 		
 		
 	   
 			   
-		   alert("final state Promise.all length!!!! " + this.state.coordinateArray/*[0]*/.length + " Array contains: " + this.state.coordinateArray[0]); //reassigned to this.props.techInfoHandler
+		   alert("final state Promise.all length!!!! " + this.state.coordinateArray[0].length + " Array contains: " + this.state.coordinateArray[0]); //reassigned to this.props.techInfoHandler
 		   //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
 		   this.props.techInfoHandler("final state Promise.all length " + this.state.coordinateArray[0].length + " Array contains: " + this.state.coordinateArray[0]);   
 		   
 		   //Draw the result
-		   this.drawResult();  //reassigned to <Result/>, now result is drawn from state.arg1 in App.js
+		   //this.drawResult();  //reassigned to <Result/>, now result is drawn from state.arg1 in App.js
 		   
 		   // calling parent method from child {this.props. + method}-> passing/uplifting array with found coords to App.js, method is described in Parent App.js
-		    this.props.liftFinalCoordsHandler(this.state.coordinateArray/*[0]*/)/*('Lifted_Coords_Array')*/;//!!!!!!!!!!!!!  
+		    this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])/*('Lifted_Coords_Array')*/;//!!!!!!!!!!!!!  
 	  
           })
 		  //Start Addon---
@@ -150,7 +179,7 @@ class TextAreaX extends Component {
   // **************************************************************************************
   // **************************************************************************************
   //                                                                                     **
-  getFormValue(/*promises,temp*/){
+  getFormValue(promises,temp){
 	 
 
 		 
@@ -167,30 +196,33 @@ class TextAreaX extends Component {
 	   //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
 	   this.props.techInfoHandler("arrayX2: " + arrayX2);   
 	   
-	 
+	   //this.setState(prevState => ({
+      // addressArray: [prevState.addressArray, arrayX2]
+       //}));
 	   
-	   //adding arraay with address to state---------!!!!!!!!!!!!! ERRORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR=================================
-	   let addressTempArray = this.state.addressArray; //getting state to array
+	   //adding arraay with address to state---------
+	   let addressTempArray = [];// this.state.addressArray; //getting state to array
 	   /*addressTempArray.forEach(item => {  //this is var if u want to add existing array new values
            addressTempArray.push(arrayX2); 
        });
 	   */
-	   addressTempArray.unshift(arrayX2); //adds to array in this way: addressArray = [[arrayX2]]; //MEGA FIX, change push() to unshift()
+	   addressTempArray.push(arrayX2); //adds to array in this way: addressArray = [[arrayX2]];
 	   alert("9999cccc addressTempArray[0].length " + addressTempArray[0].length + " consists=> " +  addressTempArray[0] );
+	   //addressTempArray = arrayX2;
 	   
-	   
+	   /*
        this.setState({ //sets new value to state
-           addressArray:addressTempArray/*[0]*/ // arrayX2 //addressTempArray[0]
+           addressArray: arrayX2 //addressTempArray[0]
        }); 
-	   
+	   */
 	  
 	   //Calls this.runAjax(promises,temp); only after finished setting state
-	   /* this.setState({
+	   this.setState({
            addressArray: arrayX2
        }, () => {
-           //this.runAjax(promises,temp);
+           this.runAjax(promises,temp);
 		    
-       }); */
+       });
        
 
 	   //this.setState({addressArray: [arrayX2]}); 
@@ -226,14 +258,14 @@ class TextAreaX extends Component {
 		  // var promises = []; //add array to use in Promise.all(promises
 		   $("#loading").fadeIn(200); //show preloader
 		   
-		    /*setTimeout(() => {
-              alert("forStart DELAY  " + this.state.addressArray[0].length); 
-           }, 3000);*/
+		    setTimeout(() => {
+              alert("forStart DELAY  " + this.state.addressArray.length); 
+           }, 3000);
 		 
 		   
-		   alert("forStart  " + this.state.addressArray[0].length);
-		   for (let j = 0; j < this.state.addressArray[0].length; j++) { alert("for " + this.state.addressArray[0][j]);
-                promises.push(axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + this.state.addressArray[0][j] + '.json?country=us&access_token=pk.eyJ1IjoiYWNjb3VudDkzMSIsImEiOiJjaXgwOTVuOTEwMGFxMnVsczRwOWx0czhnIn0.YjZ5bpnh6jqTEk7cCJfrzw')   
+		   alert("forStart  " + this.state.addressArray.length);
+		   for (let j = 0; j < this.state.addressArray/*[0]*/.length; j++) { alert("for " + this.state.addressArray[j]);
+                promises.push(axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + this.state.addressArray/*[0]*/[j] + '.json?country=us&access_token=pk.eyJ1IjoiYWNjb3VudDkzMSIsImEiOiJjaXgwOTVuOTEwMGFxMnVsczRwOWx0czhnIn0.YjZ5bpnh6jqTEk7cCJfrzw')   
                .then(function (response) {
                    //alert(JSON.stringify(response, null, 4)); 
                    //alert(response.data.features[0].center[1] +  ' = ' + response.data.features[0].center[0]);	
@@ -309,15 +341,15 @@ class TextAreaX extends Component {
 	   this.props.techInfoHandler("draw:  " + this.state.coordinateArray[0] + " has length " + this.state.coordinateArray[0].length); 
 	   
        let b = this.state.coordinateArray;
-	   alert("in DRAW: b length " + b.length + " - b[0]  " + b[0].length + " - " + b);
-       let res = "<p class='red'>React Results found => " + this.state.coordinateArray/*[0]*/.length/2 + "</p>"; //must be at least empty defined to avoid "undefined" appearance
+	   alert("b length " + b.length + " - b[0]  " + b[0].length + " - " + b);
+       let res = "<p class='red'>React Results found => " + this.state.coordinateArray[0].length/2 + "</p>"; //must be at least empty defined to avoid "undefined" appearance
        //res += <CopyLayout/>;  { /* CopyLayout component */ }
 	   //res += "<input type='button' value='Copy' id='copybutton' onClick={CopyLayout.copy_table_result}><span id='flashMessage'></span>"; //copy button
 	   res += "<table id='tableResults'>"; //adding div that will be copied further
 	   
-	   for (let i = 0; i < this.state.coordinateArray/*[0]*/.length; i++){
+	   for (let i = 0; i < this.state.coordinateArray[0].length; i++){
 		   if(i % 2 === 0){
-	       res += "<tr><td>" +  this.state.coordinateArray/*[0]*/[i] + "</td><td> " +  this.state.coordinateArray/*[0]*/[i+1] + "<td></tr>";
+	       res += "<tr><td>" +  this.state.coordinateArray[0][i] + "</td><td> " +  this.state.coordinateArray[0][i+1] + "<td></tr>";
 		   }
        }
 	   
