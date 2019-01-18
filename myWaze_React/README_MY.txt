@@ -20,9 +20,17 @@ when all axios requests are completed {promises.push(axios.get('https://api.mapb
 2.4 Thirdly, in {{run_This_Component_Functions_In_Queue}} we check if all axios are finished -> Promise.all(promises).then(() => {...},
  assign temporay array with axios results to state=> this.state.coordinateArray and start this.drawResult();
  
+ 
 3. Component description
-3.1 <Technical_Info> !!!!!!!!!!!!!!!!
-3.2 <ErrorLayout/>
+3.1 <Technical_Info> 
+  Componenents that has gone to <Technical_Info/> : 
+  <LiftedFrom_Component handleToUpdate = {handleToUpdate.bind(this)}/> +   
+  <LiftedTo_Component liftedValue={this.state.arg1}/> + 
+  <State_Array_List_Builder numbers={this.state.arg1}  /> 
+  
+3.2 <ErrorLayout/> component that is hidden be default, it shows error gif animation if there is no input in textarea
+
+3.3 <TextArea/> - core component
  
 ==================================================
 
@@ -35,7 +43,7 @@ How to uplift var value from child component to Parent state, triggede on direct
 
 ==========
 
-How to uplift var value from child component to Parent state manually, triggered in some child function:
+How to uplift var value from child component to Parent state manually(without onClick) , triggered in some child function:
 1. In Child comp in a place u want, call the parent method and pass to its arg neccessary values data {this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])}
 2. In Parent comp add  binding to constructor(props){} =>var liftFinalCoordsHandler = this.liftFinalCoordsHandler.bind(this);  //for catching lifted state from TextArea Comp
 3. In Parent comp describe the method and what to do with passed argument=>
@@ -45,7 +53,7 @@ How to uplift var value from child component to Parent state manually, triggered
         this.setState({arg1:someArgCoords});
     }
 4. In Parent comp add to render section => var liftFinalCoordsHandler =  this.liftFinalCoordsHandler ;
-5. In Parent comp call Child Component itself with params=> <TextAreaX liftFinalCoordsHandler = {liftFinalCoordsHandler.bind(this)}/>, no matter it is not triggered on click
+5. In Parent comp call/declare Child Component itself with params=> <TextAreaX liftFinalCoordsHandler = {liftFinalCoordsHandler.bind(this)}/>, no matter it is not triggered on click
 
 ====================================================
 
