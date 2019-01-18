@@ -12,8 +12,8 @@
 	
 /*  ----------------Mobile */
 @media screen and (max-width: 640px) {
-	.error-parent{top:2em;}
-	.error-img{width:90%;}
+	.error-parent{top:2em; left:2%;}
+	.error-img{width:99%;}
 
 }  
  
