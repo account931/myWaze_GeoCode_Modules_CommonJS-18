@@ -4,6 +4,11 @@ Updated version
 3.App uses 1 script - dist/js/bundle.js, which contains all scripts, packed by Browserify
 
 ============================================================================
+CLI Commands
+npm init  -> to create package.json
+npm install -> if u have package.json with dependencies and no {node-modules} folder yet.
+
+===============================================
 Commands
 1. browserify js/geo_mapbox_core.js -o dist/js/bundle_js.js -d      =>  creates js bundle (if u use browserify standalone, u 'll have to recreate it manually after any changes in script)
    
@@ -30,6 +35,8 @@ npm install gulp --save-dev  => add to package.json dependencies
 
 
 npm i browser-sync --save-dev
+npm i --save-dev gulp-concat gulp-uglifyjs
+npm i --save-dev vinyl-buffer
 
 ===============================================================================
 watchify.js install-> add to package.json + npm install (we need if we use browserify standalone, without Gulp)
