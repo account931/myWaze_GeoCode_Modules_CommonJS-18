@@ -45,7 +45,7 @@ class TextAreaX extends Component {
 		   $(".error-parent").fadeIn(2500); //show error gif from <Error/>
 		
 		   setTimeout(function(){
-              $('.App').removeClass('blur'); //removes blur
+              $('.App').removeClass('blur'); //removes blur from background
 			  $(".error-parent").fadeOut(1000); //hide error gif from <Error/>
            }, 4000); // A delay of 1000ms
 		   
@@ -75,8 +75,8 @@ class TextAreaX extends Component {
 	  //runs when for loop iteration axios ajax request are completed
 	  Promise.all(promises)
           .then(() => {
-			  alert("this.state.addressArray " + this.state.addressArray.length);
-               alert("all promises, temp= " + temp); //reassigned to this.props.techInfoHandler
+			  //alert("this.state.addressArray " + this.state.addressArray.length);
+               //alert("all promises, temp= " + temp); //reassigned to this.props.techInfoHandler
                //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
 		       this.props.techInfoHandler("all promises " + temp);   /*('Lifted_Coords_Array')*/
 	  
@@ -112,12 +112,12 @@ class TextAreaX extends Component {
 		
 	   
 			   
-		   alert("final state Promise.all length!!!! " + this.state.coordinateArray/*[0]*/.length + " Array contains: " + this.state.coordinateArray[0]); //reassigned to this.props.techInfoHandler
+		   //alert("final state Promise.all length!!!! " + this.state.coordinateArray/*[0]*/.length + " Array contains: " + this.state.coordinateArray[0]); //reassigned to this.props.techInfoHandler
 		   //instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
 		   this.props.techInfoHandler("final state Promise.all length " + this.state.coordinateArray[0].length + " Array contains: " + this.state.coordinateArray[0]);   
 		   
-		   //Draw the result
-		   this.drawResult();  //reassigned to <Result/>, now result is drawn from state.arg1 in App.js
+		   //Draw the result - MAIN RETURN
+		   //this.drawResult();  //reassigned to props in <Result/>, now result is drawn from state.arg1 in App.js  //RETURN!!!!!!!!!!!!!!!!!!!!!!!!!
 		   
 		   // calling parent method from child {this.props. + method}-> passing/uplifting array with found coords to App.js, method is described in Parent App.js
 		    this.props.liftFinalCoordsHandler(this.state.coordinateArray/*[0]*/)/*('Lifted_Coords_Array')*/;//!!!!!!!!!!!!!  
@@ -129,6 +129,16 @@ class TextAreaX extends Component {
 		     //this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])/*('Lifted_Coords_Array')*/;//!!!!!!!!!!!!!
 		     //Draw the result
 		     //this.drawResult();  //reassigned to <Result/>, now result is drawn from state.arg1 in App.js
+			 
+			 
+			  // HTML  Result div  with  animation-------
+              $("#resultFinal").stop().fadeOut("slow",function(){ 
+              //$(this).html(res)
+              }).fadeIn(2000);
+              $("#resultFinal").css("border","1px solid red"); //  set  red  border  for  result  div
+		      $("#copyButton").css("display","block");
+	          //END  HTML  Result div  with  animation----
+	 
 		  })
 		  //END Addon----
           .catch((e) => {
@@ -176,7 +186,7 @@ class TextAreaX extends Component {
        });
 	   */
 	   addressTempArray.unshift(arrayX2); //adds to array in this way: addressArray = [[arrayX2]]; //MEGA FIX, change push() to unshift()
-	   alert("9999cccc addressTempArray[0].length " + addressTempArray[0].length + " consists=> " +  addressTempArray[0] );
+	   //alert("9999cccc addressTempArray[0].length " + addressTempArray[0].length + " consists=> " +  addressTempArray[0] );
 	   
 	   
        this.setState({ //sets new value to state
@@ -226,19 +236,20 @@ class TextAreaX extends Component {
 		  // var promises = []; //add array to use in Promise.all(promises
 		   $("#loading").fadeIn(200); //show preloader
 		   
+		    //working TimeOut
 		    /*setTimeout(() => {
               alert("forStart DELAY  " + this.state.addressArray[0].length); 
            }, 3000);*/
 		 
 		   
-		   alert("forStart  " + this.state.addressArray[0].length);
-		   for (let j = 0; j < this.state.addressArray[0].length; j++) { alert("for " + this.state.addressArray[0][j]);
+		   //alert("forStart  " + this.state.addressArray[0].length);
+		   for (let j = 0; j < this.state.addressArray[0].length; j++) { //alert("for " + this.state.addressArray[0][j]);
                 promises.push(axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + this.state.addressArray[0][j] + '.json?country=us&access_token=pk.eyJ1IjoiYWNjb3VudDkzMSIsImEiOiJjaXgwOTVuOTEwMGFxMnVsczRwOWx0czhnIn0.YjZ5bpnh6jqTEk7cCJfrzw')   
                .then(function (response) {
                    //alert(JSON.stringify(response, null, 4)); 
                    //alert(response.data.features[0].center[1] +  ' = ' + response.data.features[0].center[0]);	
                     temp.push(response.data.features[0].center[1], response.data.features[0].center[0]);
-                    alert("inside" + temp);	
+                    //alert("inside" + temp);	
                     					
                 })
 				.then(function (response) { //not neccessary to use this .then, just a test
@@ -309,7 +320,7 @@ class TextAreaX extends Component {
 	   this.props.techInfoHandler("draw:  " + this.state.coordinateArray[0] + " has length " + this.state.coordinateArray[0].length); 
 	   
        let b = this.state.coordinateArray;
-	   alert("in DRAW: b length " + b.length + " - b[0]  " + b[0].length + " - " + b);
+	   //alert("in DRAW: b length " + b.length + " - b[0]  " + b[0].length + " - " + b);
        let res = "<p class='red'>React Results found => " + this.state.coordinateArray/*[0]*/.length/2 + "</p>"; //must be at least empty defined to avoid "undefined" appearance
        //res += <CopyLayout/>;  { /* CopyLayout component */ }
 	   //res += "<input type='button' value='Copy' id='copybutton' onClick={CopyLayout.copy_table_result}><span id='flashMessage'></span>"; //copy button

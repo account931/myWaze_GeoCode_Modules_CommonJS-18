@@ -46,7 +46,7 @@ class App extends Component {
 	
 	//methodfor catching lifted state from LiftedFrom_Component, triggerd onClick
     handleToUpdate(someArg){
-            alert('We pass argument from Child to Parent (now we are in <App/>): ' + someArg);
+            //alert('We pass argument from Child to Parent (now we are in <App/>): ' + someArg);
             this.setState({arg1:someArg});
     }
 	
@@ -62,7 +62,7 @@ class App extends Component {
 	
 	//WORKING!!!!!!! - clearing/reseting state arg1 onClick button="Clear"
 	clearStateHandler(vv){
-            alert('Cleared' + vv);
+            //alert('Cleared' + vv);
             this.setState({arg1:''});
     }
 	
@@ -81,8 +81,8 @@ class App extends Component {
 	//for clearing state techInfoState on every Button click
 	reset_techInfo_State(some){
 		//this.setState(this.initialState);
-		alert("resetting");
-		alert("this.baseState-> " + this.baseState );
+		//alert("resetting");
+		//alert("this.baseState-> " + this.baseState );
 		this.setState({ //sets new value to state //setState is an async function
            techInfoState: this.state.baseState
        }); 
