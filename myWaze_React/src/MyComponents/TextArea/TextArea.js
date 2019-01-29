@@ -39,7 +39,7 @@ class TextAreaX extends Component {
 	  //if texarea is empty, stop anything further, show/hide <Error/> component
 	  if(this.getFormValue(/*promises,temp*/) === false)
 	  {
-		   $("html, body").animate({ scrollTop: 0 }, "slow"); //scroll to top
+		   $("html, body").animate({ scrollTop: 0 }, "slow"); //scroll the page to top(mostly for mobile convenience)
 		   
            $('.App').addClass('blur');  //blur the background
 		   $(".error-parent").fadeIn(2500); //show error gif from <Error/>
@@ -50,11 +50,14 @@ class TextAreaX extends Component {
            }, 4000); // A delay of 1000ms
 		   
 		   //display error text with function
-		   this.htmlAnyResult("<h2 class='red'>You submitted Empty Input</h2>");
+		   this.htmlAnyResult("<h2 class='red' id='errorSign'>You submitted Empty Input</h2>");
 		  
+		  // calling parent method from child {this.props. + method}-> passing/uplifting array with found coords to App.js, method is described in Parent App.js
+		   this.props.liftFinalCoordsHandler([]); //sending empty array to reset this.state.arg1 in <App/>.js. Otherwise, when u found coordinates by texarea input and get the result and then solved to empty the input and click the "Geocode" button, the sign "Empty input" will appear, but table with prev coords result will stay
 
 		  return false; //must have to stop futher Action
 	  }
+	  
 	  
 	  
        //Resetting state to Null ,calling parent method from child {this.props. + method}-> passing/uplifting alert info, described in Parent App.js
@@ -169,6 +172,16 @@ class TextAreaX extends Component {
 		 //alert("empty");
          return false;		 
 	   }
+	   
+	   
+	   //check if "You submitted Empty Input" error sign exists and remove it if it does exists. it is done to prevent this sign to appear again if further input is not empty. Otherwise, new table coors result will appear, but error sign will remain on the screen
+	   if ($("#errorSign").length){
+           //alert('Does exist!');
+	       $("#errorSign").remove();
+       }
+
+
+
 	   let textareaX = $("#coordsInput").val(); //alert(textarea);
        textareaX = textareaX.trim();
 	   let arrayX2 = textareaX.split('\n');
@@ -357,9 +370,7 @@ class TextAreaX extends Component {
   //                                                                                     **
   htmlAnyResult(textX){
 	  $("#resultFinal").stop().fadeOut("slow",function(){ 
-	   
-            $(this).html(textX)
-	   
+            $(this).append( textX )   //use .append() instead of .html() to remove this <h2> error sign if texarea input is not empty
        }).fadeIn(11000);
 
        $("#resultFinal").css("border","1px solid red"); //  set  red  border  for  result  div 
