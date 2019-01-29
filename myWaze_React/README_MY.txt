@@ -69,5 +69,10 @@ How to BUILD/Pack APP for hosting server
 Folder "BUILD" is for ready created app with all minified concatenated dependencies.
 Created by CLI-> npm run build.
 
-Known Issue: path to js,css in BUILD should be without "/" in beginning => "static/js/..."
-GIF imge was not loading => change to {e.exports=/*a.p+*/"static/media/loading2.f7ccc9e1.gif"} in build/static/js/main.91b5d174.chunk.js
+Known Problem Issue: path to js,css in BUILD should be without "/" in beginning => 
+ 1. "static/js/...", not "/static/js/"
+ 2. "favicon"
+ 3.GIF imge was not loading => change to {e.exports=/*a.p+*/"static/media/loading2.f7ccc9e1.gif"} in build/static/js/main.91b5d174.chunk.js
+
+
+
