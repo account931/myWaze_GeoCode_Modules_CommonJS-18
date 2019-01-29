@@ -13,6 +13,7 @@ class CopyLayout extends Component {
  
     // This binding is necessary to make `this` work in the callback
 	this.copy_table_result = this.copy_table_result.bind(this);
+	this.scrollResults = this.scrollResults.bind(this);  //advanced scroll
   }
   
   
@@ -38,10 +39,19 @@ class CopyLayout extends Component {
      // Remove the textarea;
     document.body.removeChild(t);
 	
+	
+	
+	//scroll page to copy section in mobile(to see copy gif).Full source in github/mp3
+	//Scroll to results in Mobile only
+	if(window.screen.width <= 640){ 
+	    this.scrollResults( "#flashMessage"); //advanced, the 2nd arg is not called here
+	}
+	
+	//show text "Copied!!!"
 	$('#flashMessage').html(' Copied!!!!!!!');//.fadeOut(4500);
 	setTimeout(function(){ $('#flashMessage').html(''); }, 2000);
 
-	
+	//show hidden loading copy indicator img
 	$('#copy_loading').fadeIn(2500);
 	setTimeout(function(){ $('#copy_loading').fadeOut(4500); }, 2000);
 
@@ -56,6 +66,32 @@ class CopyLayout extends Component {
   
   
   
+    // Advanced Scroll, it scrolls the page to certain div. Full source in github/mp3
+	// **************************************************************************************
+    // **************************************************************************************
+    //                                                                                     ** 
+	scrollResults(divName, parent)  //arg(DivID, levels to go up from DivID)
+	{   //if 2nd arg is not provided while calling the function with one arg
+		if (typeof(parent)==='undefined') {
+		
+            $('html, body').animate({
+                scrollTop: $(divName).offset().top
+                //scrollTop: $('.your-class').offset().top
+             }, 'slow'); 
+		     // END Scroll the page to results
+		} else {
+			//if 2nd argument is provided
+			var stringX = "$(divName)" + parent + "offset().top";  //i.e constructs -> $("#divID").parent().parent().offset().top
+			$('html, body').animate({
+                scrollTop: eval(stringX)         //eval is must-have, crashes without it
+                }, 'slow'); 
+		}
+	}
+	
+	// **                                                                                  **
+    // **************************************************************************************
+    // **************************************************************************************
+  
    
    
    
@@ -68,7 +104,7 @@ class CopyLayout extends Component {
 	    <input type="button" className="btn btn-primary btn-md" value="<CopyLayout/>" id="copyButton" onClick={this.copy_table_result} />   
 		<span id='flashMessage' className='red'></span>
 		
-		{/* Hidden loading copy indicator */}
+		{/* Hidden loading copy indicator img */}
 		<span id='copy_loading'>
 			<img src={copyIMG}  className="img-header" alt="logo" />  {/*  hidden by default */}
 		</span>  
