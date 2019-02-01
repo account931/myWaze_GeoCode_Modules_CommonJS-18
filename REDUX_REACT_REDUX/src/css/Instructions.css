@@ -1,0 +1,11 @@
+.instructions{
+	display:none;
+	width:100%;
+	background:#ebebe0;
+	padding:1em;
+	margin-top:1em;
+}
+
+.link{font-size:18px;}
+
+#hiddenInstructions{clear:both;} /* Fixes Instruction div overlapping the Buttons, {.buttons :after { clear: both;}} is not working. */
