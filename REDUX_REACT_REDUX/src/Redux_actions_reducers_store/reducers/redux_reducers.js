@@ -9,21 +9,25 @@ var i = 0;
 
 
 // reducers.js
-export const geod = (state = {}, action) => {
+export const geodReducer = (state = {}, action) => {
   switch (action.type) {
 	  
+	  
+	//Used in ReduxTest_Component 
     case 'ACTIVATE_GEOD':
 	  //alert(++i); //mine
       return action.geodZ;  //action name must be the same as in redux_actions.js -> geodZ
-	  
+	 
+    //Used in ReduxTest_Component	 
     case 'CLOSE_GEOD':
 	alert("reducer");
       return {  };
 	  
 	
+	//used in TextArea
 	 case 'PASS_COORDS_TO_REDUX':
 	   alert("REDUX"); //mine
-       return {};
+       return action.myCoordsX;  //action name must be the same as in redux_actions.js -> myCoordsX
 	  
 	  
     default:
@@ -32,6 +36,6 @@ export const geod = (state = {}, action) => {
 };
 
 export const reducers = combineReducers({
-  geod,
+  geodReducer,
 });
 

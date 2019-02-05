@@ -5,19 +5,21 @@ import {
 
 
 // actions.js
+
+//Used in ReduxTest_Component
 export const activateGeod = geodZ => ({
   type: 'ACTIVATE_GEOD',
   geodZ,
 });
 
-
+//Used in ReduxTest_Component
 export const closeGeod = () => ({
   type: 'CLOSE_GEOD',
 });
 
 
-
-export const pass_coords_to_Redux = () => ({
+//used in TextArea
+export const pass_coords_to_Redux = myCoordsX => ({
   type: 'PASS_COORDS_TO_REDUX',
-  
+  myCoordsX,
 });
