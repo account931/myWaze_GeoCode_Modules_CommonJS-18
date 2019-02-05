@@ -5,7 +5,13 @@ import $ from 'jquery';
 import axios from 'axios';
 import CopyLayout from '../Copy/CopyLayout';
 
-class TextAreaX extends Component {
+//REDUX import
+import { connect } from 'react-redux';
+import { pass_coords_to_Redux, closeGeod } from '../../Redux_actions_reducers_store/actions/redux_actions';
+import { store } from '../../Redux_actions_reducers_store/store/redux_store';
+
+
+export class TextAreaX extends Component {
 	constructor(props) {
     super(props);
     this.state = {
@@ -124,10 +130,17 @@ class TextAreaX extends Component {
 		   
 		   // calling parent method from child {this.props. + method}-> passing/uplifting array with found coords to App.js, method is described in Parent App.js
 		    this.props.liftFinalCoordsHandler(this.state.coordinateArray/*[0]*/)/*('Lifted_Coords_Array')*/;//!!!!!!!!!!!!!  
+			
+			
+			
+			//REDUX, pass final coords to redux store 
+			this.props.pass_coords_to_Redux({ reduxCoords: this.state.coordinateArray });   //({ title: 'TextArea' });
+			alert("redux in TextArea");
+			
 	  
           })
 		  //Start Addon---
-		  .then(() => {
+		  .then(() => { 
 		     // calling parent method from child {this.props. + method}-> passing/uplifting array with found coords to App.js, method is described in Parent App.js
 		     //this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])/*('Lifted_Coords_Array')*/;//!!!!!!!!!!!!!
 		     //Draw the result
@@ -146,6 +159,7 @@ class TextAreaX extends Component {
 		  //END Addon----
           .catch((e) => {
              // handle errors here
+			 alert("then failed in line 137");
           });
 	   // END all promises
 	  
@@ -391,6 +405,7 @@ class TextAreaX extends Component {
       return (
 	   
 	     <div>
+		 <h4>Textarea Redux value is-> {this.props.geodSt.reduxCoords}</h4>
 	         <CopyLayout/>
 	         <form className="textarea-my" >
                  <textarea id="coordsInput" rows="8" cols="80" placeholder="Your address here to geocode..." /> 
@@ -405,4 +420,32 @@ class TextAreaX extends Component {
   }
 }
 
-export default TextAreaX;
+//export default TextAreaX;
+
+
+
+
+
+
+
+
+
+
+//REDUX PART!!!!!!!!!!
+// AppContainer.js
+const mapStateToProps = state => ({
+  geodSt:  state.geodReducer, //geodReducer var name is set in redux_reducers
+});
+
+const mapDispatchToProps = {
+  pass_coords_to_Redux,
+ 
+};
+
+const AppContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TextAreaX);  //the name of component to connect Redux store to
+
+export default AppContainer;
+

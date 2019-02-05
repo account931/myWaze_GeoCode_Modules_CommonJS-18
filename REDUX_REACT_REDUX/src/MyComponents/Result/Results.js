@@ -3,7 +3,13 @@ import React, { Component } from 'react';
 import '../../css/Results.css';
 import $ from 'jquery';
 
-class Results extends Component {
+//REDUX
+import { connect } from 'react-redux';
+import {pass_coords_to_Redux } from '../../Redux_actions_reducers_store/actions/redux_actions';
+import { store } from '../../Redux_actions_reducers_store/store/redux_store';  
+
+
+export class Results extends Component {
 	  constructed_answer2 = '';
 	  
 	 
@@ -111,8 +117,9 @@ class Results extends Component {
 	
 	  
 	
-	  //checks if passes props is array or string  
-	  if( typeof this.props.resultX === 'string' ) { //will never fire, just for test
+	  //checks if passes props is array or string 
+      if( typeof this.props.reduxCoords === 'string' ) { //uses REDUX Store 
+	  //if( typeof this.props.resultX === 'string' ) { //will never fire, just for test
 	    //$("#resultFinal").html("");
 		//alert(2222);
 		flag = false;
@@ -123,7 +130,8 @@ class Results extends Component {
 		//instead of alert, it calls parent method from child {this.props. + method}-> passing/uplifting alert info to method techInfoHandler described in Parent App.js
 	    //this.props.techInfoHandler("String detected in State_Array_List_Builder"); 
 		
-		this.constructed_answer2 = <p> {this.props.resultX}</p>;
+		//this.constructed_answer2 = <p> {this.props.resultX}</p>; //uses REDUX Store 
+		this.constructed_answer2 = <p> {this.props.reduxCoords}</p>;
 		
 	} else {
 		//alert(4444);
@@ -131,6 +139,7 @@ class Results extends Component {
 		//final_all += "<table id='tableResults'>"; //adding div that will be copied further
 		
 	   //alert("Array");
+	   //this.constructed_answer2 = this.props.reduxCoords.map((coords, i, arrayX) =>{ {/* maps() args=>(content, iterator, arryitself)*/} //uses REDUX Store
        this.constructed_answer2 = this.props.resultX.map((coords, i, arrayX) =>{ {/* maps() args=>(content, iterator, arryitself)*/}
 	       if (i%2 === 0) {
 	       return(
@@ -203,7 +212,9 @@ class Results extends Component {
 	  
     return (
 	    <div className="results" id="resultFinal">
-		    <p className='red'> React Results found =>  {this.props.resultX.length/2}  </p>
+		<h4>Result Redux value is-> {this.props.myReduxCoords.reduxCoords}</h4>
+		<p className='red'> React Results found =>  {this.props.resultX.length/2}  </p>
+		{/*<p className='red'> React Results found =>  {this.props.resultX.length/2}  </p>*/}
 			<table id='tableResults'>{/* adding id that will be copied further */}
 			<tbody>{/* acaused crash without tbody nesting*/}
 	            {/*  final  results  go  there  */} 
@@ -216,4 +227,28 @@ class Results extends Component {
   }
 }
 
-export default Results;
+//export default Results;
+
+
+
+
+
+
+//REDUX PART!!!!!!!!!!
+// AppContainer.js
+const mapStateToProps = state => ({
+  myReduxCoords: state.geodReducer, //geodReducer var name is set in redux_reducers
+});
+
+const mapDispatchToProps = {
+  //activateGeod,
+  pass_coords_to_Redux,
+};
+
+const AppContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Results);  //the name of component to connect Redux store to
+
+export default AppContainer;
+

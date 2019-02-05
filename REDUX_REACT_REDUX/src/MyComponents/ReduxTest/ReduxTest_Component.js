@@ -53,9 +53,11 @@ export class ReduxTest_Component extends Component {
 //export default ReduxTest_Component;
 
 
+
+//REDUX PART!!!!!!!!!!
 // AppContainer.js
 const mapStateToProps = state => ({
-  geod: state.geod,
+  geod: state.geodReducer, //geodReducer set in redux_reducers
 });
 
 const mapDispatchToProps = {
