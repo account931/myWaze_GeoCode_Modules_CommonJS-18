@@ -11,11 +11,14 @@ import LiftedFrom_Component from './MyComponents/LiftUpComponent/LiftedFrom_Comp
 import ErrorLayout from './MyComponents/Error/ErrorLayout';  //display error gif
 import Technical_Info from './MyComponents/Tech_Info/Technical_Info';  //displays info instead of alert
 
-import ReduxTest from './MyComponents/ReduxTest/ReduxTest';  //displays info instead of alert
+//REDUX import
+import ReduxTest_Component from './MyComponents/ReduxTest/ReduxTest_Component';  //ReduxTest_Component
+
 // Add these imports - Step 1
 import { Provider } from 'react-redux';
-import { store } from './Redux/redux';
-
+//import { store } from './Redux_actions_reducers_store/redux';
+import { store } from './Redux_actions_reducers_store/store/redux_store';
+//END REDUX import
 
 class App extends Component {
     constructor(props) {
@@ -112,19 +115,24 @@ class App extends Component {
 						    <img src={logo}  className="react-logo-static" alt="logo" />
 						</h4>
 						
-			            <Header nameX = "ReactJS"/>  { /* header component*/ }
+			            <Header nameX = "ReactJS + Redux"/>  { /* header component*/ }
 						<ButtonsLayout clearStateHandler = {clearStateHandler.bind(this)}/>   { /* buttons component */ }
 						<Instructions/>    { /* instructions component */ }
-						<Results resultX={this.state.arg1}/>         { /* results component */ }
-						<TextAreaX liftFinalCoordsHandler = {liftFinalCoordsHandler.bind(this)}  techInfoHandler={techInfoHandler.bind(this)} reset_techInfo_State={reset_techInfo_State.bind(this)} />       { /* CORE textarea component */ }
-					
+						
+						<Provider store={store}> {/*Redux*/}
+						    <Results resultX={this.state.arg1}/>         { /* results component */ }
+						</Provider>{/*Redux*/}
+						
+						
+						<Provider store={store}> {/*Redux*/}
+						    <TextAreaX liftFinalCoordsHandler = {liftFinalCoordsHandler.bind(this)}  techInfoHandler={techInfoHandler.bind(this)} reset_techInfo_State={reset_techInfo_State.bind(this)} />       { /* CORE textarea component */ }
+					    </Provider>{/*Redux*/}
 					
 						<Technical_Info techInfoData={this.state.techInfoState}  numbers={this.state.arg1}  handleToUpdate = {handleToUpdate.bind(this)} /> { /* displays info instead of alert */ }
-						
 						{ /* Componenents that has gone to Technical_Info : <LiftedFrom_Component handleToUpdate = {handleToUpdate.bind(this)}/> +   <LiftedTo_Component liftedValue={this.state.arg1}/> + <State_Array_List_Builder numbers={this.state.arg1}  />  */}
 						
-						<Provider store={store}>
-						<ReduxTest/> { /*Redux*/ }
+						<Provider store={store}> { /*Redux*/ }
+						    <ReduxTest_Component/> { /*Redux*/ }
 			            </Provider>
 						
 						
