@@ -118,7 +118,7 @@ export class Results extends Component {
 	  
 	
 	  //checks if passes props is array or string 
-      if( typeof this.props.reduxCoords === 'string' ) { //uses REDUX Store 
+      if( typeof this.props.myReduxCoords.rrr === 'string' ) { //uses REDUX Store 
 	  //if( typeof this.props.resultX === 'string' ) { //will never fire, just for test
 	    //$("#resultFinal").html("");
 		//alert(2222);
@@ -131,16 +131,16 @@ export class Results extends Component {
 	    //this.props.techInfoHandler("String detected in State_Array_List_Builder"); 
 		
 		//this.constructed_answer2 = <p> {this.props.resultX}</p>; //uses REDUX Store 
-		this.constructed_answer2 = <p> {this.props.reduxCoords}</p>;
+		this.constructed_answer2 = <p> {this.props.myReduxCoords.rrr}</p>;
 		
 	} else {
-		//alert(4444);
+		alert(this.props.myReduxCoords.rrr.length);
 		//final_all = "<p class='red'>React Results found => " + this.props.resultX.length/2 + "</p>"; //must be at least empty defined to avoid "undefined" appearance
 		//final_all += "<table id='tableResults'>"; //adding div that will be copied further
 		
 	   //alert("Array");
-	   //this.constructed_answer2 = this.props.reduxCoords.map((coords, i, arrayX) =>{ {/* maps() args=>(content, iterator, arryitself)*/} //uses REDUX Store
-       this.constructed_answer2 = this.props.resultX.map((coords, i, arrayX) =>{ {/* maps() args=>(content, iterator, arryitself)*/}
+	   this.constructed_answer2 = this.props.myReduxCoords.rrr.map((coords, i, arrayX) =>{ {/* maps() args=>(content, iterator, arryitself)*/} //uses REDUX Store
+       //this.constructed_answer2 = this.props.resultX.map((coords, i, arrayX) =>{ {/* maps() args=>(content, iterator, arryitself)*/}
 	       if (i%2 === 0) {
 	       return(
                <tr key={coords.toString()}>
@@ -207,12 +207,12 @@ export class Results extends Component {
 
   
   render() {
-	 this.run_Result();
+	 this.run_Result(); 
 	 
 	  
     return (
 	    <div className="results" id="resultFinal">
-		<h4>Result Redux value is-> {this.props.myReduxCoords.reduxCoords}</h4>
+		<h4>Result Redux value is---> {this.props.myReduxCoords.rrr.length/2}</h4>
 		<p className='red'> React Results found =>  {this.props.resultX.length/2}  </p>
 		{/*<p className='red'> React Results found =>  {this.props.resultX.length/2}  </p>*/}
 			<table id='tableResults'>{/* adding id that will be copied further */}
@@ -237,12 +237,12 @@ export class Results extends Component {
 //REDUX PART!!!!!!!!!!
 // AppContainer.js
 const mapStateToProps = state => ({
-  myReduxCoords: state.geodReducer, //geodReducer var name is set in redux_reducers
+  myReduxCoords: state.geodReducer, // {myReduxCoords} is the name of props we will use in this component(i.e this.props.myReduxCoords.reduxCoords), //{geodReducer} is a name of reucer set in reducers/redux_reducers.js
 });
 
 const mapDispatchToProps = {
   //activateGeod,
-  pass_coords_to_Redux,
+  pass_coords_to_Redux,  //action
 };
 
 const AppContainer = connect(

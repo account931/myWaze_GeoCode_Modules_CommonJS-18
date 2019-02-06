@@ -7,8 +7,8 @@ import CopyLayout from '../Copy/CopyLayout';
 
 //REDUX import
 import { connect } from 'react-redux';
-import { pass_coords_to_Redux, closeGeod } from '../../Redux_actions_reducers_store/actions/redux_actions';
-import { store } from '../../Redux_actions_reducers_store/store/redux_store';
+import { pass_coords_to_Redux/*, closeGeod*/ } from '../../Redux_actions_reducers_store/actions/redux_actions';
+//import { store } from '../../Redux_actions_reducers_store/store/redux_store';
 
 
 export class TextAreaX extends Component {
@@ -134,7 +134,7 @@ export class TextAreaX extends Component {
 			
 			
 			//REDUX, pass final coords to redux store 
-			this.props.pass_coords_to_Redux({ reduxCoords: this.state.coordinateArray });   //({ title: 'TextArea' });
+			this.props.pass_coords_to_Redux({ rrr: this.state.coordinateArray });   //({ title: 'TextArea' });
 			alert("redux in TextArea");
 			
 	  
@@ -434,9 +434,10 @@ export class TextAreaX extends Component {
 //REDUX PART!!!!!!!!!!
 // AppContainer.js
 const mapStateToProps = state => ({
-  geodSt:  state.geodReducer, //geodReducer var name is set in redux_reducers
+  geodSt:  state.geodReducer, // {geodSt} is the name of props we will use in this component(i.e this.props.geodSt.reduxCoords), //{geodReducer} is a name of reucer set in reducers/redux_reducers.js
 });
 
+//action
 const mapDispatchToProps = {
   pass_coords_to_Redux,
  
