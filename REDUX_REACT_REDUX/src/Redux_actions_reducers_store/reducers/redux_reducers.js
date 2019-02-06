@@ -21,7 +21,7 @@ export const geodReducer = (state = {}, action) => {
     //Used in ReduxTest_Component	 
     case 'CLOSE_GEOD':
 	alert("reducer");
-      return {  };
+      return { };
 	  
 	
 	//used in TextArea

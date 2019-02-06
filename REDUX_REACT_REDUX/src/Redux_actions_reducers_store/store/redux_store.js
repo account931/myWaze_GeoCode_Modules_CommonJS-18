@@ -3,11 +3,12 @@ import {
   createStore,
 } from 'redux';
 
-import { geod, reducers } from '../reducers/redux_reducers'; //import reducers
+import { geodReducer, reducers } from '../reducers/redux_reducers'; //import reducers //{geodReducer} is a reducer name as specified in /reducers/redux_reducers.js
 
 
-// store.js
-export function configureStore(initialState = {  geod: {title:"i am initialState set in redux.js"},  reduxCoords: [5,5],    }) {   {/* Mine   geod:{title:"set in redux.js"} */}
+// store.js  //{geodReducer} is a reducer name as specified in /reducers/redux_reducers.js
+export function configureStore(initialState = {  
+       geodReducer: { title:"i am initialState set in redux_store.js", rrr: []}  }) {   {/* Mine   geod:{title:"set in redux.js"} */}
   const store = createStore(reducers, initialState);
   return store;
 };
