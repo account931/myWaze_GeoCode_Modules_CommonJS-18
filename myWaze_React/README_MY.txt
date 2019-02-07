@@ -1,5 +1,13 @@
 Waze geocoding React version.
 #Works on MapBox Api, on js only, php side is not engaged.
+Two main components are:
+  a.)<TextArea/> (which  gets addresses input value, splits it to array, 
+  sends axos ajax and gets final coords array and pass/uplift it to parent <App/>) 
+  
+  b.)<Result/> (which displays final coords array from this.state.arg1). 
+  <Result/> is hidden by default, it JS turns visible in <TextArea/> in promise .then().
+===============================
+
 
 How it works:
 1. Index.js is a JS entry point, it contains <App/> Component, 
@@ -18,23 +26,29 @@ Each axios is added to array promises[] in order to know,
 when all axios requests are completed {promises.push(axios.get('https://api.mapbox.com/geocoding/v5/mapbox.places/' + this.state.addressArray[0][j]....} 
 
 2.4 Thirdly, in {{run_This_Component_Functions_In_Queue}} we check if all axios are finished -> Promise.all(promises).then(() => {...},
- assign temporay array with axios results to state=> this.state.coordinateArray and start this.drawResult();
+ assign temporay array with axios results to state=> this.state.coordinateArray and previously we used to start function this.drawResult(), which used JQ to html() coordinates;
+ Now, we deactivated this function {this.drawResult()} as we use <Results/> with state.arg1, i.e  <Results resultX={this.state.arg1}/>.
+ {State.arg1} is an array with final coordinates passed/uplifted from <TextArea/> to parent <App/> with callback:
+  this.props.liftFinalCoordsHandler(this.state.coordinateArray/*[0]*/).
+  
+2.5 Previously, we had problem with multiple rendering <Results/> and mutliple html-ing()(css blinking) the same result, so we moved this code to <TextArea/> in 
+  {.then(() => { $("#resultFinal").stop().fadeOut("slow",function(){ .......}. This {.then} runs only after getting all final coords.
  
  
 3. Component description
-3.1 <Technical_Info> 
+3.1 <Technical_Info> - component for testing
   Componenents that has gone to <Technical_Info/> : 
-  <LiftedFrom_Component handleToUpdate = {handleToUpdate.bind(this)}/> +   
-  <LiftedTo_Component liftedValue={this.state.arg1}/> + 
-  <State_Array_List_Builder numbers={this.state.arg1}  /> 
+  <LiftedFrom_Component handleToUpdate = {handleToUpdate.bind(this)}/> , it send/uplift state to parent <Technical_Info>
+  <LiftedTo_Component liftedValue={this.state.arg1}/> , it accepts state from parent <Technical_Info>
+  <State_Array_List_Builder numbers={this.state.arg1}/>, test building the display upon the passed state array
   
-3.2 <ErrorLayout/> component that is hidden be default, it shows error gif animation if there is no input in textarea
+3.2 <ErrorLayout/> component that is hidden be default, it shows error gif animation if there is no input in textarea.
 
 3.3 <TextArea/> - core component
  
 ==================================================
 
-How to uplift var value from child component to Parent state, triggede on direct onClick action:
+How to uplift var value from child component to Parent state, triggered on direct onClick action:
 1. In Child comp add to render section => {  render() { var handleToUpdate  = this.props.handleToUpdate;}
 2. In Child comp add to return section => {<button onClick={() => handleToUpdate('some var to lift')}>}
 3. In Parent comp add to constructor(props){} =>  var handleToUpdate = this.handleToUpdate.bind(this);
@@ -43,7 +57,7 @@ How to uplift var value from child component to Parent state, triggede on direct
 
 ==========
 
-How to uplift var value from child component to Parent state manually(without onClick) , triggered in some child function:
+How to uplift var value from child component to Parent state manually(without onClick), triggered in some child function by direct function calling:
 1. In Child comp in a place u want, call the parent method and pass to its arg neccessary values data {this.props.liftFinalCoordsHandler(this.state.coordinateArray[0])}
 2. In Parent comp add  binding to constructor(props){} =>var liftFinalCoordsHandler = this.liftFinalCoordsHandler.bind(this);  //for catching lifted state from TextArea Comp
 3. In Parent comp describe the method and what to do with passed argument=>
