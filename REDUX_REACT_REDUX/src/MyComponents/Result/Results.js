@@ -5,7 +5,7 @@ import $ from 'jquery';
 
 //REDUX
 import { connect } from 'react-redux';
-import {pass_coords_to_Redux } from '../../Redux_actions_reducers_store/actions/redux_actions';
+//import {pass_coords_to_Redux } from '../../Redux_actions_reducers_store/actions/redux_actions';
 import { store } from '../../Redux_actions_reducers_store/store/redux_store';  
 
 
@@ -115,7 +115,8 @@ export class Results extends Component {
 	
 	//alert("this.props.resultX length " + this.props.resultX.length);
 	
-	  
+	  //MEGA FIX, we set default value to {this.props.myReduxCoords.rrr}, which we get from REDUX store, if REDUX rrr is not defined, we assign to props default values. Otherwise, we have a crash when click on button in <ReduxTest_Component/>
+	  this.props.myReduxCoords.rrr = this.props.myReduxCoords.rrr|| [7];
 	
 	  //checks if passes props is array or string 
       if( typeof this.props.myReduxCoords.rrr === 'string' ) { //uses REDUX Store 
@@ -131,10 +132,10 @@ export class Results extends Component {
 	    //this.props.techInfoHandler("String detected in State_Array_List_Builder"); 
 		
 		//this.constructed_answer2 = <p> {this.props.resultX}</p>; //uses REDUX Store 
-		this.constructed_answer2 = <p> {this.props.myReduxCoords.rrr}</p>;
+		this.constructed_answer2 = <p> {this.props.myReduxCoords.rrr}</p>;  //uses REDUX Store
 		
 	} else {
-		alert(this.props.myReduxCoords.rrr.length);
+		//alert(this.props.myReduxCoords.rrr.length);
 		//final_all = "<p class='red'>React Results found => " + this.props.resultX.length/2 + "</p>"; //must be at least empty defined to avoid "undefined" appearance
 		//final_all += "<table id='tableResults'>"; //adding div that will be copied further
 		
@@ -212,11 +213,12 @@ export class Results extends Component {
 	  
     return (
 	    <div className="results" id="resultFinal">
-		<h4>Result Redux value is---> {this.props.myReduxCoords.rrr.length/2}</h4>
-		<p className='red'> React Results found =>  {this.props.resultX.length/2}  </p>
+		
+		{/*<h4>Result Redux value is---> {this.props.myReduxCoords.rrr.length/2}</h4>*/}
+		<p className='red'> React Results found =>  {this.props.myReduxCoords.rrr.length/2} </p>{/*Uses Redux store*/}
 		{/*<p className='red'> React Results found =>  {this.props.resultX.length/2}  </p>*/}
 			<table id='tableResults'>{/* adding id that will be copied further */}
-			<tbody>{/* acaused crash without tbody nesting*/}
+			<tbody>{/* caused crash without tbody nesting*/}
 	            {/*  final  results  go  there  */} 
 		        {this.constructed_answer2 }
 			</tbody>
@@ -242,7 +244,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   //activateGeod,
-  pass_coords_to_Redux,  //action
+  //pass_coords_to_Redux,  //action
 };
 
 const AppContainer = connect(

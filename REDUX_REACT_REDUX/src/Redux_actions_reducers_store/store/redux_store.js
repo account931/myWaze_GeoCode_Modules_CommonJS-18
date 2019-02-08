@@ -8,7 +8,7 @@ import { geodReducer, reducers } from '../reducers/redux_reducers'; //import red
 
 // store.js  //{geodReducer} is a reducer name as specified in /reducers/redux_reducers.js
 export function configureStore(initialState = {  
-       geodReducer: { title:"i am initialState set in redux_store.js", rrr: []}  }) {   {/* Mine   geod:{title:"set in redux.js"} */}
+       geodReducer: { title:"i am initialState set in redux_store.js", rrr: [] }  }) {   {/* Mine   geod:{title:"set in redux.js"} */}
   const store = createStore(reducers, initialState);
   return store;
 };

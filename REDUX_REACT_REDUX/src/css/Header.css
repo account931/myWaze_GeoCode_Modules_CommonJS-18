@@ -59,3 +59,12 @@
 .red{color:red;}
 
 /*.img-header{margin-bottom:4em;}*/
+
+
+
+.react-redux-logo{width:25%; margin-top:-30px ;margin-bottom:-40px;}
+.h1-class{margin-bottom:-20px;}
+
+@media screen and (max-width: 460px) {  
+    .react-redux-logo{width:85%;}
+}

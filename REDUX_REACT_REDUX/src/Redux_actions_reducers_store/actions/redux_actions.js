@@ -15,6 +15,7 @@ export const activateGeod = geodZ => ({
 //Used in ReduxTest_Component
 export const closeGeod = () => ({
   type: 'CLOSE_GEOD',
+  
 });
 
 

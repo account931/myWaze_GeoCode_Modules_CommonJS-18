@@ -405,7 +405,7 @@ export class TextAreaX extends Component {
       return (
 	   
 	     <div>
-		 <h4>Textarea Redux value is-> {this.props.geodSt.reduxCoords}</h4>
+		 {/*<h4>Textarea Redux value is-> {this.props.geodSt.reduxCoords}</h4>*/}
 	         <CopyLayout/>
 	         <form className="textarea-my" >
                  <textarea id="coordsInput" rows="8" cols="80" placeholder="Your address here to geocode..." /> 

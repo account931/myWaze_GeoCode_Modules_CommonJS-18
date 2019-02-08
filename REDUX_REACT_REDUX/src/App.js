@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+//import logo from './images/redux_react.png';
 import './css/App.css';
 import Header from './MyComponents/Header/Header';
 import ButtonsLayout from './MyComponents/Buttons/ButtonsLayout';
@@ -111,9 +112,9 @@ class App extends Component {
 				
                     <div className="col-sm-12 col-xs-12 divX App"> 
 					
-		                <h4> {this.props.name} {/* props are set in index.js */}
+		                <h6> {this.props.name} {/* props are set in index.js */}
 						    <img src={logo}  className="react-logo-static" alt="logo" />
-						</h4>
+						</h6>
 						
 			            <Header nameX = "ReactJS + Redux"/>  { /* header component*/ }
 						<ButtonsLayout clearStateHandler = {clearStateHandler.bind(this)}/>   { /* buttons component */ }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TrendTopic from './TrendTopic';
+//import TrendTopic from './TrendTopic';
 //import logo from '../../images/api.jpeg';
 //import '../../css/LiftedComponent.css';
 //import $ from 'jquery';
