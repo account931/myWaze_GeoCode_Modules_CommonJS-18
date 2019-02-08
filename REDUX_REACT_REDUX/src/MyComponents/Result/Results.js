@@ -116,7 +116,7 @@ export class Results extends Component {
 	//alert("this.props.resultX length " + this.props.resultX.length);
 	
 	  //MEGA FIX, we set default value to {this.props.myReduxCoords.rrr}, which we get from REDUX store, if REDUX rrr is not defined, we assign to props default values. Otherwise, we have a crash when click on button in <ReduxTest_Component/>
-	  this.props.myReduxCoords.rrr = this.props.myReduxCoords.rrr|| [7];
+	  this.props.myReduxCoords.rrr = this.props.myReduxCoords.rrr|| ['set default in ', ' <Results/>'];
 	
 	  //checks if passes props is array or string 
       if( typeof this.props.myReduxCoords.rrr === 'string' ) { //uses REDUX Store 

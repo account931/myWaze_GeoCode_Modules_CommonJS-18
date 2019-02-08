@@ -25,7 +25,7 @@ export class ReduxTest_Component extends Component {
 	   
 	   
 	   
-	    <h4>{this.props.geod.title || 'I am default redux, set in ReduxTest_Component!'}</h4>
+	    <h4>{this.props.geod.title || 'I am default redux, set in <ReduxTest_Component/>!'}</h4>
 
 		{/*if this.props.geod.title Exists*/}
         {this.props.geod.title ? (
@@ -36,7 +36,7 @@ export class ReduxTest_Component extends Component {
 		  
           <button
             onClick={() =>
-              this.props.activateGeod({ title: 'I am a geo dude!' })
+              this.props.activateGeod({ title: 'I am set in <ReduxTest_Component/> with this.props.activateGeod ' })
             }
           >
             Click Me!

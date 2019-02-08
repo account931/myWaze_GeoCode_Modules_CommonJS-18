@@ -135,7 +135,7 @@ export class TextAreaX extends Component {
 			
 			//REDUX, pass final coords to redux store 
 			this.props.pass_coords_to_Redux({ rrr: this.state.coordinateArray });   //({ title: 'TextArea' });
-			alert("redux in TextArea");
+			//alert("redux in TextArea");
 			
 	  
           })

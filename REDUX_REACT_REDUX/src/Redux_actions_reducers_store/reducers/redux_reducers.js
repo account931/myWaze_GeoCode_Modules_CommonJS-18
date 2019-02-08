@@ -21,13 +21,13 @@ export const geodReducer = (state = {}, action) => {
     //Used in ReduxTest_Component	 
     case 'CLOSE_GEOD':
 	//alert("reducer");
-      return {title:"", rrr:[5,5]};
+      return {title:"", rrr:['i am set ', ' in reducer by CLOSE_GEOD']};
 	  
 	  
 	
 	//used in TextArea, write final coords array to Redux store
 	 case 'PASS_COORDS_TO_REDUX':
-	   alert("REDUX"); //mine
+	   //alert("REDUX"); //mine
        return action.myCoordsX;  //action name must be the same as in redux_actions.js -> myCoordsX
 	  
 	  
