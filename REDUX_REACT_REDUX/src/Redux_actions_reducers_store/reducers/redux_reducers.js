@@ -5,27 +5,28 @@ import {
 
 
 //mine
-var i = 0;
+var i = 0; //not used
 
 
 // reducers.js
-export const geodReducer = (state = {}, action) => {
+export const geodReducer = (state = {}, action) => {  //the name of const {geodReducer} must be the same as in {const reducers} in this same file; and the same as in redux_store.js->(function configureStore())
   switch (action.type) {
 	  
 	  
-	//Used in ReduxTest_Component 
+	//Used in <ReduxTest_Component/>
     case 'ACTIVATE_GEOD':
 	  //alert(++i); //mine
       return action.geodZ;  //action name must be the same as in redux_actions.js -> geodZ
 	 
-    //Used in ReduxTest_Component	 
+	 
+    //Used in <ReduxTest_Component/>, clears the Redux store {title} object + sets Redux {rrr} to some test text 
     case 'CLOSE_GEOD':
 	//alert("reducer");
       return {title:"", rrr:['i am set ', ' in reducer by CLOSE_GEOD']};
 	  
 	  
 	
-	//used in TextArea, write final coords array to Redux store
+	//used in <TextArea/>, it writes final coords array to Redux store
 	 case 'PASS_COORDS_TO_REDUX':
 	   //alert("REDUX"); //mine
        return action.myCoordsX;  //action name must be the same as in redux_actions.js -> myCoordsX
@@ -36,7 +37,8 @@ export const geodReducer = (state = {}, action) => {
   }
 };
 
+//exporting a reducer
 export const reducers = combineReducers({
-  geodReducer,
+  geodReducer,  //the name of {geodReducer} must be the same as in {const geodReducer} in this same file; and the same as in redux_store.js->(function configureStore())
 });
 

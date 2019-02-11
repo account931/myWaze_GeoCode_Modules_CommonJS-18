@@ -1,4 +1,4 @@
-//This file was prev fully working, we just commented it as we separarted it to 3 different folders: actions, reducers, store
+//This file was prev fully working, now it is NOT USED, as we just separarted it to 3 different folders: actions, reducers, store
 
 /*
 import {
