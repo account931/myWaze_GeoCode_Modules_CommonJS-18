@@ -90,3 +90,9 @@ Known Problem Issue: path to js,css in BUILD should be without "/" in beginning 
 
 
 
+========================================================
+ERROR GIF LOADER:
+Error Loader is located in <ErrorLayout/>, it is display:none by default.
+If input is empty Error Loader is triggered in <TextArea/>:
+  $('.App').addClass('blur');  //blur the background
+  $(".error-parent").fadeIn(2500); //show error gif from <Error/>
