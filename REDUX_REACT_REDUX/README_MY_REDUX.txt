@@ -143,7 +143,7 @@ when all axios requests are completed {promises.push(axios.get('https://api.mapb
  assign temporay array with axios results to state=> this.state.coordinateArray and previously we used to start function this.drawResult(), which used JQ to html() coordinates;
  Now, we deactivated this function {this.drawResult()} as we use <Results/> with state.arg1, i.e  <Results resultX={this.state.arg1}/>.
  {State.arg1} is an array with final coordinates passed/uplifted from <TextArea/> to parent <App/> with callback:
- {this.props.liftFinalCoordsHandler(this.state.coordinateArray/*[0]*/)}
+  this.props.liftFinalCoordsHandler(this.state.coordinateArray/*[0]*/).
   
 2.5 Previously, we had problem with multiple rendering <Results/> and mutliple html-ing()(css blinking) the same result, so we moved this code to <TextArea/> in 
   {.then(() => { $("#resultFinal").stop().fadeOut("slow",function(){ .......}. This {.then} runs only after getting all final coords.
@@ -201,4 +201,13 @@ Known Problem Issue: path to js,css in BUILD should be without "/" in beginning 
  1. "static/js/...", not "/static/js/"
  2. "favicon"
  3.GIF imge was not loading => change to {e.exports=/*a.p+*/"static/media/loading2.f7ccc9e1.gif"} in build/static/js/main.91b5d174.chunk.js
+
+
+
+========================================================
+ERROR GIF LOADER:
+Error Loader is located in <ErrorLayout/>, it is display:none by default.
+If input is empty Error Loader is triggered in <TextArea/>:
+  $('.App').addClass('blur');  //blur the background
+  $(".error-parent").fadeIn(2500); //show error gif from <Error/>
 
